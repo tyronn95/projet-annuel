@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PCS</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="CSS/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <header>
+        </header>
+        <main>
+            <div class="rowty">
+                <!-- Bande latérale gauche -->
+                <div id="ligneG">
+                </div>
+                <section class="container">
+                    <h1>
+                        Connexion
+                    </h1>
+                    <form method="post" action="login.php">
+                        <label for="username">Nom d'utilisateur : </label>
+                        <input name="username" placeholder="utilisateur">
+
+                        <label id="lmdp"  for="password">Mots de passe: </label>
+                        <input name="password" placeholder="motdepasse">
+
+                        <div>
+                            <button id = "square-button"></button>
+                            <label for="nom">Se souvenir de moi</label>
+                        </div>
+
+                        <button type="submit" id = "bouton" class="btn btn-primary">Se connecter</button>
+                    </form>
+                    <div id = "Liens">
+                        <div>
+                            <t>Vous n'avez pas de compte :</t>
+                            <a href="./inscription.html">Inscrivez-vous</a>
+                        </div>
+                        <div><t>Vous ne vous souvenez plus du mot de passe:</t>
+                            <a>Mots de passe oublié</a>
+                        </div>
+                    </div>
+                </section>
+                </div>
+                <div id="ligneD">
+                </div>
+            </div>
+        </main>
+        <footer>
+        </footer>
+        <script src="CSS/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

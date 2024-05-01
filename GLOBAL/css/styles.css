@@ -1,0 +1,316 @@
+/* Réinitialiser la marge et le remplissage */
+html, nav {
+margin: 0;
+padding: 0;
+height: 100%;
+
+}
+
+/* Appliquer un arrière-plan noir à tout le site et ajuster la couleur du texte */
+body {
+background-color: black;
+color: #BAA06A; /* Couleur du texte similaire à celle du fond du header */
+min-height: 100%;
+position: relative; /* Ajoutez cette propriété pour positionner le footer absolument par rapport au body */
+margin-bottom: 15vh;
+}
+
+/* Styles existants */
+* {
+font-family: 'Playfair Display';
+}
+
+
+.header-bg {
+background-color: #BAA06A; /* Couleur de fond */
+height: 150px;
+color: black; /* Assure que le texte du header contraste avec son fond */
+}
+
+.navbar-light .navbar-nav .nav-link, .navbar-brand, .identify-text, .fas {
+color: black; /* Couleur des liens et du texte dans le header pour le contraste */
+font-weight: bold;
+}
+
+.nav-link {
+margin: 20px;
+font-size: 1.8rem; /* Taille du texte */
+text-decoration: underline;
+}
+
+.identify-text {
+font-size: 1.8rem; /* Taille du texte */
+text-align: center; /* Centre le texte */
+}
+
+.fas {
+height: 70px;
+font-size: 4.5rem; /* Taille de l'icône */
+margin-right: 90px;
+}
+
+
+footer {
+position: absolute;
+bottom: 0;
+width: 100%;
+background-color: #BAA06A;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 35px;
+}
+
+
+
+.mt-5{
+font-size: 1.5rem;
+}
+
+.compact-text {
+max-width: 1200px; /* ou toute autre largeur selon vos besoins */
+margin: auto; /* Centre la div */
+padding: 20px; /* Ajoute de l'espace à l'intérieur de la div */
+}
+
+
+h1{
+/* font-size: ; */
+font-weight: bold;
+font-size: 50px;
+}
+
+/* Style pour le conteneur principal */
+.container {
+background-color: #f5f5dc; /* Beige */
+}
+
+/* Ajout pour le container principal pour prendre toute la largeur et hauteur restante */
+.container {
+width: 100%; /* Prend toute la largeur */
+display: flex; /* Utilise flexbox pour le positionnement des éléments à l'intérieur */
+flex-direction: column; /* Organise les enfants de .container en colonne */
+flex-grow: 1; /* Permet au container de grandir et remplir l'espace disponible */
+justify-content: space-around; /* Répartit l'espace autour des éléments à l'intérieur */
+padding: 20px; /* Ajoute un peu d'espace à l'intérieur du container */
+box-sizing: border-box; /* Inclut padding dans la hauteur totale du container */
+}
+
+/* Style pour les mini-conteneurs à l'intérieur du conteneur principal */
+.content-container {
+background-color: #BAA06A; /* Vous pouvez ajuster la couleur si nécessaire */
+color: black;
+flex-grow: 1;
+text-align: center;
+}
+
+/* Style pour les titres dans les mini-conteneurs */
+.content-container h3 {
+color: black;
+margin-bottom: 1rem; /* Espace après le titre */
+}
+
+/* Espacement entre les colonnes */
+.row {
+margin-left: -15px;
+margin-right: -15px;
+}
+
+.row > [class^="col-"] {
+padding: 15px;
+}
+
+h3{
+/* font-size: ; */
+font-weight: bold;
+text-decoration: underline;
+}
+
+/* Cache tous les éléments sauf le premier par défaut */
+.col-md-3 {
+display: none;
+}
+
+.col-md-3:first-child {
+display: flex;
+}
+
+.btn-nav{
+background-color: #BAA06A;
+color: black;
+}
+
+.container-fluid{
+background-color: #BAA06A;
+}
+
+.h1-footer{
+background-color: #BAA06A;
+color: black;
+text-decoration: bold;
+}
+
+.container_paris, .container_plage, .container_int {
+display: flex;
+justify-content: center;
+align-items: center;
+margin-bottom: 20px;
+}
+
+.container_plage {
+flex-direction: row-reverse;
+}
+
+.content {
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-right: 20px;
+}
+
+.container_paris h2, .container_plage h2, .container_int h2 {
+font-size: 24px;
+color: #BAA06A;
+text-align: center;
+margin-bottom: 10px;
+text-decoration: underline;
+font-weight: bold;
+}
+
+img {
+width: 800px;
+height: 500px;
+object-fit: cover;
+border-radius: 15px;
+}
+
+.text-container {
+flex: 1;
+max-width: 30%;
+text-align: justify;
+padding: 20px;
+background: #BAA06A;
+color: rgb(0, 0, 0);
+border-radius: 15px;
+font-weight: bold;
+font-size: 20px;
+transition: 0.3s;
+position: relative; /* Ajouté pour positionner le lien */
+margin: 50px;
+}
+
+
+.en-savoir-plus {
+position: absolute; /* Positionne le lien en bas à droite */
+bottom: 10px;
+right: 10px;
+color: rgb(0, 0, 0);
+text-decoration: underline;
+margin: 10px;
+}
+
+.en-savoir-plus:hover {
+color: #000000;
+transition: 0.3s;
+
+}
+
+.social-icons {
+text-align: center; /* Centre les icônes si votre pied de page est large */
+}
+
+.social-icons a {
+color: rgb(0, 0, 0); /* Ou toute autre couleur que vous préférez */
+margin: 0 10px; /* Ajustez l'espacement autour des icônes */
+font-size: 40px; /* Ajustez la taille des icônes */
+}
+
+.social-icons a:hover {
+color: #000000; /* Couleur au survol */
+}
+
+.content-container .icon {
+height: 64px; /* Ou toute autre taille que vous préférez */
+width: auto;
+margin-bottom: 1rem; /* Espace entre l'icône et le titre */
+display: block; /* Pour que l'icône soit centrée si elle est plus petite que la largeur du conteneur */
+margin-left: auto; /* Centre l'icône horizontalement */
+margin-right: auto;
+}
+
+.underline {
+text-decoration: underline;
+}
+
+.mb-4{
+  color: #000000;
+}
+
+
+.btn-primary {
+  color:#BAA06A;
+  background-color: #000000;
+  border-color: goldenrod;
+  border-radius: 100px;
+}
+
+#cDocument{
+  color:#000000;
+  background-color: #BAA06A;
+  border-radius: 15px;
+  font-size: 22px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  padding-left: 6%;
+  margin-top: 4%;
+}
+
+
+
+#choisirBien{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 6%;
+}
+
+
+#pdf div{
+  display: flex;
+  flex-direction: row;
+  margin: 2%;
+  justify-content: space-between;
+}
+
+
+#devis{
+  display: flex;
+  flex-direction: column;
+  margin: 2%;
+  justify-content: space-between;
+}
+
+#devis a{
+  width: 25%;
+  margin-right: 4%;
+}
+
+#devis a:hover{
+  background-color: goldenrod;
+}
+
+#burger-menu {
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+#menu {
+  display: none;
+}

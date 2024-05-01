@@ -1,0 +1,266 @@
+/* Style de base pour le corps et la page HTML, avec arrière-plan noir et texte blanc */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #1e1c1c; /* Arrière-plan noir */
+    color: #fff; /* Texte en blanc */
+}
+
+/* Le conteneur principal qui centre votre contenu et a un arrière-plan noir */
+.container {
+    max-width: 800px; /* Largeur maximale du conteneur */
+    margin: 0 auto; /* Centre le conteneur */
+    background-color: #1e1c1c; /* Arrière-plan noir */
+    padding: 20px; /* Espace intérieur */
+    border: 2px solid #c1a219; /* Bordure dorée */
+}
+
+/* Style pour les en-têtes des différentes sections */
+header, .intervention-header, .rapport-header, .signatures h3 {
+    background-color: #c1a219; /* Arrière-plan doré */
+    color: #000; /* Texte noir */
+    padding: 5px;
+    text-align: center;
+}
+
+/* Style pour les sections d'informations de l'intervention, avec bordure dorée et fond noir */
+.intervention-info, .intervention, .rapport, .signatures {
+    border: 2px solid #c1a219; /* Bordure dorée */
+    background-color: #1e1c1c; /* Fond noir */
+    margin-bottom: 10px; /* Espace en dessous de chaque section */
+    padding: 10px; /* Espace intérieur */
+}
+
+
+/* Style pour le bouton de soumission du formulaire */
+input[type="submit"] {
+    width: 100%; /* Largeur complète */
+    padding: 10px; /* Espace intérieur */
+    background-color:#c1a219; /* Style de base pour le corps et la page HTML, avec arrière-plan noir et texte blanc */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: ; /* Arrière-plan noir */
+    color: #0000; /* Texte en blanc */
+}
+
+
+/* Style pour la barre de séparation verticale entre les sections Technicien et Client */
+.signature-divider {
+    background-color: #c1a219; /* Bordure dorée */
+    width: 2px; /* Épaisseur de la bordure */
+    height: 100%; /* Hauteur complète */
+    margin: 0 20px; /* Espace de chaque côté */
+}
+
+/* Style pour l'espace réservé à la signature */
+.signature-space {
+    border-bottom: 1px solid #c1a219; /* Ligne solide dorée */
+    height: 50px; /* Hauteur de l'espace pour la signature */
+    background-color: #1e1c1c; /* Fond noir */
+    color: #fff; /* Texte blanc */
+}
+
+; /* Arrière-plan noir */
+    color: #fff; /* Texte blanc */
+    border: none; /* Pas de bordure */
+    cursor: pointer; /* Curseur de pointeur pour indiquer qu'il est cliquable */
+    margin-top: 10px; /* Espace au-dessus du bouton */
+}
+
+/* Style pour le pied de page */
+footer {
+    text-align:center;
+    background-color: #1e1c1c; /* Fond noir */
+    color: #fff; /* Texte blanc */
+    padding: 5px;
+}
+
+
+/* Style pour les champs de saisie avec ligne pointillée en dessous */
+.input-underline {
+    border-bottom: 1px dotted #c1a219; /* Ligne pointillée dorée */
+    padding-bottom: 5px; /* Espace en dessous du texte */
+    margin-bottom: 20px; /* Espace en dessous du champ */
+}
+
+.input-underline input[type="text"],
+.input-underline input[type="date"] {
+    border: none; /* Pas de bordure */
+    background-color: #1e1c1c; /* Fond noir */
+    color: #fff; /* Texte blanc */
+    width: 100%; /* Largeur complète */
+    padding: 5px; /* Espace intérieur */
+}
+
+
+.intervention-info {
+    background-color: #1e1c1c; /* Fond noir */
+    border: 2px solid #c1a219; /* Bordure dorée */
+    margin-bottom: 10px;
+    padding: 10px;
+    color: #fff; /* Texte blanc */
+
+}
+
+.section-title {
+    background-color: #c1a219; /* Fond doré */
+    color: #000; /* Texte noir */
+    padding: 5px;
+    margin: -10px -10px 10px -10px; /* Chevauchement pour correspondre à la bordure extérieure */
+    text-align: center;
+    
+}
+
+.date-info, .client-info {
+    display: flex; /* Affichage en ligne */
+    justify-content: space-between; /* Espace réparti uniformément entre les champs */
+}
+
+.field {
+    flex: 1; /* Flexibilité pour que chaque champ prenne une part égale de l'espace */
+    margin: 0 5px; /* Espace horizontal entre les champs */
+    position: relative; /* Pour positionner la pseudo-élément */
+}
+
+.field:not(:last-child):after {
+    content: ''; /* Pseudo-élément pour les lignes de séparation */
+    position: absolute;
+    right: -5px; /* Positionné à droite du champ */
+    top: 50%;
+    transform: translateY(-50%);
+    height: 1em; /* Hauteur de la ligne de séparation */
+    border-right: 1px solid #c1a219; /* Bordure droite dorée */
+}
+
+.field label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.intervention-info input[type="text"],
+.intervention-info input[type="number"],
+.intervention-info input[type="date"],
+.intervention-info input[type="time"] {
+    width: 100%; /* Prend toute la largeur du champ */
+    background-color: #1e1c1c; /* Fond noir */
+    color: #fff; /* Texte blanc */
+    border: none; /* Pas de bordure */
+    border-bottom: 1px dotted #c1a219; /* Bordure inférieure pointillée dorée */
+    padding: 5px; /* Espace intérieur */
+}
+
+.intervention-info input[type="text"]:focus,
+.intervention-info input[type="number"]:focus,
+.intervention-info input[type="date"]:focus,
+.intervention-info input[type="time"]:focus {
+    outline: none; /* Pas de contour de mise au point */
+    border-bottom-color: #fff; /* Bordure inférieure blanche lors de la mise au point */
+}
+.intervention, .rapport {
+    background-color: #1e1c1c; /* Arrière-plan noir */
+    color: #fff; /* Texte blanc */
+    border: 2px solid #c1a219; /* Bordure dorée */
+    margin-bottom: 10px;
+    padding: 20px;
+}
+
+.intervention-header, .rapport-header {
+    background-color: #c1a219; /* Fond doré */
+    color: #000; /* Texte noir */
+    text-align: center;
+    padding: 5px;
+    margin: -10px -10px 10px -10px; /* Ajustement pour chevaucher la bordure de la section */
+    
+}
+
+.textarea-container {
+    margin-bottom: 5px; /* Espace après chaque textarea */
+}
+
+.textarea-container textarea, .rapport textarea {
+    width: 100%; /* Largeur complète de la section */
+    background-color: #1e1c1c; /* Fond noir */
+    color: #fff; /* Texte blanc */
+    border: 1px solid #c1a219; /* Bordure dorée */
+    padding: 10px; /* Espace intérieur pour le texte */
+    height: 50px; /* Hauteur fixe pour les textarea */
+}
+
+.textarea-container textarea::placeholder, .rapport textarea::placeholder {
+    color: #fff; /* Couleur du texte placeholder en blanc */
+}
+
+.textarea-container textarea:focus, .rapport textarea:focus {
+    outline: none; /* Aucun contour lors de la sélection */
+    border-color: #fff; /* Bordure blanche lors de la sélection */
+}
+
+/////////
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    background: black;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #003580;
+}
+//
+body {
+    font-family: Arial, sans-serif;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+}

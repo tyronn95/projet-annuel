@@ -1,0 +1,11 @@
+RewriteEngine On
+RewriteBase /prestataire_pcs/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /prestataire_pcs/index.php [L]
+ErrorDocument 404 /prestataire_pcs/404.html
+ErrorDocument 500 /prestataire_pcs/500.html
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

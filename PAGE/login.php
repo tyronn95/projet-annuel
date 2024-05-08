@@ -42,7 +42,7 @@ if ($user) {
     } else {
         //header('Location: verif.php');
         //header('Location: exportPDF/pdf.php');
-        header('Location: ../Projet-Annuel');
+        header('Location: /PCS');
     }
 } else {
     // Compte non trouvé, redirection vers la page de connexion avec un message d'erreur

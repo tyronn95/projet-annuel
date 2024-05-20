@@ -17,14 +17,15 @@
                 <div class="notes"> <p>2 étoiles</p> <div class="barre-noire"></div></div>
                 <div class="notes"> <p>1 étoiles</p> <div class="barre-noire"></div></div>
 
-            </div>
-            
-            <div class="d-flex align-items-center">
-                <span class="fas fa-user" aria-hidden="true"></span>
             </div>           
             <h2 class="btn-primary" id="vosNotes">Vos notes</h2>
-            <p> </p> 
-            
+            <div class = "avisPhoto">
+                <img src = "../GLOBAL/img/default-profil.png" alt="image de profil" style="height: 75px; width: auto;">
+                <div class="avis">
+                    <h3>Client n°1: Philipe</h3>
+                    <p>Service horrible</p> 
+                </div>
+            </div>    
             <form method="POST" action="notation.php">
                 <input name = "noteU" type="number">
                 <input type="submit">
@@ -48,7 +49,8 @@
             </div>
             
         </main>
-        <!-- <? include '../GLOBAL/include/footer.html' ?> -->
+        <br><br><br>
+        <? include '../GLOBAL/include/footer.html' ?>
     </body>
     <script>
         var valeurDiv = document.getElementById("valeur");

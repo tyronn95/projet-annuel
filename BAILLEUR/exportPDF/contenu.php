@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Vos données</title>
+	
 </head>
 <body>
 	<h1>Liste des utilisateurs</h1>
@@ -21,8 +22,9 @@
 				<td>Jean</td>
 				<td>Dupont</td>
 				<td>afooefe27</td>
-				<td>laver les vitres <td>
-				<td>50e/h<td>
+				<td>laver les vitres </td>
+				<td>50e/h</td>
+				<td> <? echo $user[0][0] ?></td>	
 			<tr>
 		</tbody>
 	</table>

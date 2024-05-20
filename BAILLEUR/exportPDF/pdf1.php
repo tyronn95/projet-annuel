@@ -1,5 +1,6 @@
 <?php
-
+require_once('../../GLOBAL/include/verif.php'); 
+verifierSessionUtilisateur();
 try{
 	$db = new PDO(
 	'mysql:host=localhost;
@@ -17,13 +18,16 @@ try{
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
-$sql = 'SELECT * FROM users';
 
-$query = $db->query($sql);
-
-$user = $query->fetchAll();
 
 ob_start();
+
+$sql = 'SELECT * FROM users WHERE username = :username';
+$stmt = $db->prepare($sql);
+$stmt->bindParam(':username', $_SESSION['username'], PDO::PARAM_STR);
+$stmt->execute();
+$user = $stmt->fetchAll();
+
 require_once 'contenu.php';
 $html = ob_get_contents();
 ob_end_clean();
@@ -44,8 +48,6 @@ $dompdf->render();
 $fichier = 'mon-pdf.pdf';
 
 $dompdf->stream($fichier);
-
-
 
 ?>
 

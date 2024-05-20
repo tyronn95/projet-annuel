@@ -3,8 +3,6 @@
 // $username = "root";
 // $password = "root";
 // $dbname = "PCS";
-
-// // Création de la connexion
 // $conn = new mysqli($servername, $username, $password, $dbname);
 
 include('BDDLocal.php');

@@ -1,65 +1,53 @@
 <?php
-// Inclure la classe DOMPDF
-//require_once 'vendor/autoload.php';
-session_start();
-http://localhost/Projet-Annuel/index.html
-use Dompdf\Dompdf;
+require_once('../../GLOBAL/include/verif.php'); 
+verifierSessionUtilisateur();
+try{
+	$db = new PDO(
+	'mysql:host=localhost;
+	dbname=PCS;
+	charset=utf8',
+	'root',
+	'root',
+	array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)	//Permet de voir correctement les rapports d'erreur
+	);
 
-// Récupérer les données de la base de données (exemple avec PDO)
-$pdo = new PDO('mysql:host=localhost;dbname=PCS', 'root', 'root');
-$username = $_SESSION['username'];
-$sql = "SELECT * FROM users WHERE username = :username";
-
-try {
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-    $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    echo "Erreur lors de l'exécution de la requête : " . $e->getMessage();
+}catch(Exception $e){
+    die('Erreur PDO :'. $e->getMessage());
 }
 
-// echo $data['username'];
-// $contenu = "Contenu de votre echo:" . $result['username'];
-// $chemin_fichier = 'erreur.php';
-// file_put_contents($chemin_fichier, '<?php echo "' . $contenu . '"; ?/>');
-// header('Location: '.$chemin_fichier);
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
-// ob_start();
-// require_once 'contenu.php';
-// $html = ob_get_contents();
-// ob_end_clean();
 
-require_once 'includes/dompdf/autoload.inc.php';
 
-// $html = '<html><body>';
-// $html .= '<h1>Données de la base de données</h1>';
-// $html .= '<table border="1"><tr><th>ID</th><th>Nom</th><th>Email</th></tr>';
-// $html .= '<tr><td>' . $result['username'] . '</td></tr>';
-// $html .= '</table></body></html>';
+ob_start();
+
+$sql = 'SELECT * FROM users WHERE username = :username';
+$stmt = $db->prepare($sql);
+$stmt->bindParam(':username', $_SESSION['username'], PDO::PARAM_STR);
+$stmt->execute();
+$user = $stmt->fetchAll();
+
+require_once 'contenu.php';
+$html = ob_get_contents();
+ob_end_clean();
 
 require_once 'includes/dompdf/autoload.inc.php';
+
+$options = new Options();
+$options->set('defaultFont','Courier');
 
 $dompdf = new Dompdf();
-$html = "<!DOCTYPE html>
-<html>
-<head>
-	<meta charset=\"utf-8\">
-	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
-	<title>Vos données</title>
-</head>
-<body>
-	<h1>Données de la base de données</h1>
-	<table border=\"1\">
-		<tr>
-			<th>ID</th><th>Nom</th><th>Email</th>
-		</tr>
-		<tr><td>" . $result['username'] ."</td></tr>
-	</table>
-</body>
-</html>";
+
 $dompdf->loadHtml($html);
+
+$dompdf->setPaper('A4','portrait');
+
 $dompdf->render();
-$dompdf->stream("donnees_base_de_donnees.pdf", array("Attachment" => false));
+
+$fichier = 'mon-pdf.pdf';
+
+$dompdf->stream($fichier);
 
 ?>
+

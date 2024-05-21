@@ -5,15 +5,13 @@ function publicite() {
     let resultatDiv = document.getElementById("resultat");
 
     if (input == "1") {
-        resultat = "50 €";
+        resultat = "100 €";
     }else if (toString(input) !== 'int') {
         resultat = "utiliser un chiffre";
     }else if (input == "2") {
-        resultat = "100 €";
-    }else if (input == "jaden est fou") {
-        resultat = "vrai";
-    }else if (input == "mikael le larbin d'ariana") {
-        resultat = "super vrai !!!";
+        resultat = "75 €";
+    }else if (input == "3") {
+        resultat = "50 €";
     }else{
         resultat = "entrez une valeur";
     }
@@ -21,6 +19,7 @@ function publicite() {
     resultatDiv.textContent = resultat;
     document.getElementById("myForm").addEventListener("submit", publicite);
 }
+
 
 function nettoyage() {
     event.preventDefault();

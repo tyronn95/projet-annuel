@@ -22,11 +22,11 @@ use Dompdf\Options;
 
 ob_start();
 
-$sql = 'SELECT * FROM users WHERE username = :username';
+$sql = 'SELECT * FROM logements WHERE id = :chois';
 $stmt = $db->prepare($sql);
-$stmt->bindParam(':username', $_SESSION['username'], PDO::PARAM_STR);
+$stmt->bindParam(':chois', $_SESSION['chois'], PDO::PARAM_STR);
 $stmt->execute();
-$user = $stmt->fetchAll();
+$biens = $stmt->fetchAll();
 
 require_once 'contenu.php';
 $html = ob_get_contents();

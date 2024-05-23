@@ -1,0 +1,1614 @@
+/* Réinitialiser la marge et le remplissage */
+html, nav {
+margin: 0;
+padding: 0;
+height: 100%;
+
+}
+
+/* Appliquer un arrière-plan noir à tout le site et ajuster la couleur du texte */
+body {
+background-color: black;
+color: #BAA06A; /* Couleur du texte similaire à celle du fond du header */
+min-height: 100%;
+position: relative; /* Ajoutez cette propriété pour positionner le footer absolument par rapport au body */
+margin-bottom: 15vh;
+}
+
+/* Styles existants */
+* {
+font-family: 'Playfair Display';
+}
+
+.header-bg {
+background-color: #BAA06A; /* Couleur de fond */
+height: 150px;
+color: black; /* Assure que le texte du header contraste avec son fond */
+}
+
+.navbar-light .navbar-nav .nav-link, .navbar-brand, .identify-text, .fas {
+color: black; /* Couleur des liens et du texte dans le header pour le contraste */
+font-weight: bold;
+}
+
+
+.nav-link {
+margin: 20px;
+font-size: 1.8rem; /* Taille du texte */
+text-decoration: underline;
+}
+
+.identify-text {
+font-size: 1.8rem; /* Taille du texte */
+text-align: center; /* Centre le texte */
+}
+
+.fas {
+height: 70px;
+font-size: 4.5rem; /* Taille de l'icône */
+margin-right: 90px;
+}
+
+
+
+
+footer {
+    position: relative; /* Fixe le footer en bas de l'écran */
+    bottom: -300px; /* Assure que le footer reste au bas de l'écran */
+    width: 100%; /* Le footer doit couvrir toute la largeur de l'écran */
+    background-color: #BAA06A; /* La couleur de fond de votre footer */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px; /* Ajustez à la hauteur de votre footer */
+    padding: 35px; /* Ajustez selon le contenu de votre footer */
+    z-index: 1000; /* Assurez-vous que le footer reste au-dessus des autres éléments */
+}
+
+
+
+
+.mt-5{
+font-size: 1.5rem;
+}
+
+.compact-text {
+max-width: 1200px; /* ou toute autre largeur selon vos besoins */
+margin: auto; /* Centre la div */
+padding: 20px; /* Ajoute de l'espace à l'intérieur de la div */
+}
+
+
+h1{
+/* font-size: ; */
+font-weight: bold;
+font-size: 50px;
+}
+
+
+
+/* Ajout pour le container principal pour prendre toute la largeur et hauteur restante */
+.container {
+width: 100%; /* Prend toute la largeur */
+display: flex; /* Utilise flexbox pour le positionnement des éléments à l'intérieur */
+flex-direction: column; /* Organise les enfants de .container en colonne */
+flex-grow: 1; /* Permet au container de grandir et remplir l'espace disponible */
+justify-content: space-around; /* Répartit l'espace autour des éléments à l'intérieur */
+padding: 20px; /* Ajoute un peu d'espace à l'intérieur du container */
+box-sizing: border-box; /* Inclut padding dans la hauteur totale du container */
+}
+
+/* Style pour les mini-conteneurs à l'intérieur du conteneur principal */
+.content-container {
+background-color: #BAA06A; /* Vous pouvez ajuster la couleur si nécessaire */
+color: black;
+flex-grow: 1;
+text-align: center;
+}
+
+/* Style pour les titres dans les mini-conteneurs */
+.content-container h3 {
+color: black;
+margin-bottom: 1rem; /* Espace après le titre */
+}
+
+/* Espacement entre les colonnes */
+.row {
+margin-left: -15px;
+margin-right: -15px;
+}
+
+.row > [class^="col-"] {
+padding: 15px;
+}
+
+h3{
+/* font-size: ; */
+font-weight: bold;
+text-decoration: underline;
+}
+
+.col-md-6 {
+    flex: 0 0 50%; /* Chaque colonne prend la moitié de l'espace de la ligne */
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.custom-email {
+    width: 0px; /* Ajustez selon la largeur désirée */
+}
+
+
+/* Cache tous les éléments sauf le premier par défaut */
+.col-md-3 {
+display: none;
+}
+
+.col-md-3:first-child {
+display: flex;
+}
+
+.btn-nav{
+background-color: #BAA06A;
+color: black;
+}
+
+.container-fluid{
+background-color: #BAA06A;
+}
+
+.h1-footer{
+background-color: #BAA06A;
+color: black;
+text-decoration: bold;
+}
+
+.container_paris, .container_plage, .container_int {
+display: flex;
+justify-content: center;
+align-items: center;
+margin-bottom: 20px;
+}
+
+.container_plage {
+flex-direction: row-reverse;
+}
+
+.content {
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-right: 20px;
+}
+
+.container_paris h2, .container_plage h2, .container_int h2 {
+font-size: 24px;
+color: #BAA06A;
+text-align: center;
+margin-bottom: 10px;
+text-decoration: underline;
+font-weight: bold;
+}
+
+img {
+width: 800px;
+height: 500px;
+object-fit: cover;
+border-radius: 15px;
+}
+
+.text-container {
+flex: 1;
+max-width: 30%;
+text-align: justify;
+padding: 20px;
+background: #BAA06A;
+color: rgb(0, 0, 0);
+border-radius: 15px;
+font-weight: bold;
+font-size: 20px;
+transition: 0.3s;
+position: relative; /* Ajouté pour positionner le lien */
+margin: 50px;
+}
+
+
+.en-savoir-plus {
+position: absolute; /* Positionne le lien en bas à droite */
+bottom: 10px;
+right: 10px;
+color: rgb(0, 0, 0);
+text-decoration: underline;
+margin: 10px;
+}
+
+.en-savoir-plus:hover {
+color: #000000;
+transition: 0.3s;
+
+}
+
+.social-icons {
+text-align: center; /* Centre les icônes si votre pied de page est large */
+}
+
+.social-icons a {
+color: rgb(0, 0, 0); /* Ou toute autre couleur que vous préférez */
+margin: 0 10px; /* Ajustez l'espacement autour des icônes */
+font-size: 40px; /* Ajustez la taille des icônes */
+}
+
+.social-icons a:hover {
+color: #000000; /* Couleur au survol */
+}
+
+.content-container .icon {
+height: 64px; /* Ou toute autre taille que vous préférez */
+width: auto;
+margin-bottom: 1rem; /* Espace entre l'icône et le titre */
+display: block; /* Pour que l'icône soit centrée si elle est plus petite que la largeur du conteneur */
+margin-left: auto; /* Centre l'icône horizontalement */
+margin-right: auto;
+}
+
+.underline {
+text-decoration: underline;
+}
+
+.mb-4{
+  color: #000000;
+}
+
+.table-container{
+    background-color: #BAA06A;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.form-container{
+    background-color: #BAA06A;
+        display: flex; /* Utilise Flexbox */
+        flex-direction: column; /* Empile les éléments verticalement */
+        align-items: center; /* Centre les éléments horizontalement */
+        justify-content: center; /* Centre les éléments verticalement */
+        margin-top: 20px; /* Ajuste la marge supérieure selon les besoins */
+        width: 100%; /* Utilise toute la largeur ou ajuste selon les besoins */
+    }
+    
+    /* Si .form-container est déjà défini ailleurs avec des styles différents, 
+    assurez-vous que ces propriétés soient soit ajoutées à la définition existante, 
+    soit qu'elles aient la priorité en terme de spécificité ou en utilisant !important (à utiliser avec parcimonie). */
+    
+    .btn-centered {
+        margin-top: 20px; /* Ajoute un espace au-dessus du bouton si nécessaire */
+        width: auto; /* Ajuste la largeur ou définit une largeur spécifique selon le design */
+    }
+
+.update-form, .create-form{
+    color: #000000;
+}
+
+
+
+.update-form, .create-form {
+  margin: 20px; /* Ajoute de l'espace en dessous du titre du formulaire */
+  padding: 10px 20px; /* Augmente le padding pour le bouton, le rendant plus grand */
+  text-align: center;
+  text-decoration: underline;
+}
+
+/* Style pour centrer le bouton */
+.btn-centered {
+    display: block; /* Rend le bouton un élément de bloc */
+    margin: 20px auto; /* Centre le bouton horizontalement avec une marge de 20px en haut et en bas */
+    background-color: #000000; /* Couleur de fond bleue */
+    color: #BAA06A; /* Couleur de texte blanche */
+    border: none; /* Supprime la bordure du bouton */
+    padding: 10px 20px; /* Ajuste le padding pour agrandir le bouton */
+    cursor: pointer; /* Change le curseur en pointeur au survol du bouton */
+}
+
+.btn-centered:hover{
+    background-color: #201e1e;
+}
+
+.mb-4{
+    color: #BAA06A;
+}
+
+.form-control, .btn{
+        width: 100%; /* Pour que les champs prennent toute la largeur du conteneur */
+        max-width: 500px; /* Ou toute autre largeur que vous souhaitez */
+}
+    
+
+    
+
+
+.form-control-search{
+    width: 100%;
+    border-radius: 6px;
+    padding: 6px;
+}
+
+/* Ajouter ceci à votre CSS */
+.line-left {
+    position: fixed; /* Fixed position */
+    top: 0; /* Start from the top of the page */
+    bottom: 0; /* Stretch to the bottom */
+    left: 0; /* Position to the left */
+    width: 2px; /* Width of the line */
+    background-color: #BAA06A; /* Color of the line */
+    z-index: 100; /* Ensure it's above other items */
+}
+
+.line-right {
+    position: fixed; /* Fixed position */
+    top: 0; /* Start from the top of the page */
+    bottom: 0; /* Stretch to the bottom */
+    right: 0; /* Position to the right */
+    width: 2px; /* Width of the line */
+    background-color: #BAA06A; /* Color of the line */
+    z-index: 100; /* Ensure it's above other items */
+}
+
+/* Assurez-vous que votre body a une position relative pour bien fonctionner avec les éléments fixed */
+body {
+    position: relative;
+}
+
+#userCreateForm, #userUpdateForm{
+    display: flex; /* Utilise Flexbox */
+    flex-direction: column; /* Empile les éléments verticalement */
+    align-items: center; /* Centre les éléments horizontalement */
+    justify-content: center; /* Centre les éléments verticalement */
+    margin-top: 20px; /* Ajuste la marge supérieure selon les besoins */
+    width: 100%; /* Utilise toute la largeur ou ajuste selon les besoins */
+}
+
+
+.calendar-table {
+    width: 100%;
+    background: #BAA06A;
+    color: #000000;
+    margin: 0 auto;
+    border-collapse: collapse;
+  }
+  .calendar-table th,
+  .calendar-table td {
+    border: 1px solid #000000;
+    padding: 15px;
+    text-align: center;
+  }
+  .current-day {
+    background-color: #BAA06A;
+    color: #000;
+  }
+  .calendar-header {
+    color: #BAA06A;
+  }
+  .btn-light {
+    color: #000;
+    background-color: #f8f9fa;
+  }
+
+  .calendar-navigation {
+    display: flex;
+    justify-content: flex-end; /* Align items to the right */
+    padding: 0;
+  }
+  .calendar-navigation button {
+    background-color: #BAA06A; /* Set your specific color */
+    border: none; /* Remove the border */
+    color: #000000; /* Set text color to white */
+    padding: 5px 10px; /* Reduce padding to make buttons smaller */
+    font-size: 0.85rem; /* Adjust font size as needed */
+    line-height: 1; /* Adjust line height to control the height of buttons */
+    margin-left: 5px; /* Add space between buttons */
+  }
+
+/* Effet de survol sur les cellules */
+.calendar-table td:not(.empty):hover {
+    background-color: #d2cc6c; /* Change la couleur de fond au survol */
+    cursor: pointer; /* Change le curseur pour indiquer la possibilité de cliquer */
+    transform: scale(1.05); /* Légère augmentation de taille */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transition douce pour l'effet */
+}
+
+.calendar-table td:not(.empty):active {
+    transform: scale(1); /* Retour à la taille normale lors du clic */
+}
+
+/* Vous pouvez ajuster ou enlever cette classe si l'effet 'clicked' n'est plus nécessaire */
+.clicked {
+    animation: clickAnimation 0.5s ease forwards;
+}
+
+@keyframes clickAnimation {
+    from {
+        background-color: #cccccc;
+    }
+    to {
+        background-color: transparent;
+    }
+}
+
+  
+/* Style pour les jours réservés */
+.reserved {
+    background-color: #000000; /* Fond noir pour les jours réservés */
+    color: #FFFFFF; /* Texte en blanc pour une meilleure lisibilité */
+}
+
+/* Style pour le survol des jours non réservés */
+.calendar-table td:not(.reserved):hover {
+    background-color: #555555; /* Jaune pour le survol */
+}
+
+/* (Optionnel) Si vous voulez un style de survol différent pour les jours réservés */
+.calendar-table td.reserved:hover {
+    background-color: #555555; /* Un gris plus clair pour le survol des jours réservés */
+}
+
+
+
+
+.selected {
+    background-color: #4CAF50; /* Vert */
+    color: white;
+}
+
+.in-range {
+    background-color: #C8E6C9; /* Vert clair */
+}
+
+#reservationForm {
+    background-color: #BAA06A; /* Sets the background color */
+    padding: 20px; /* Adds some padding inside the form */
+    border-radius: 8px; /* Rounds the corners */
+    width: 50%; /* Sets a specific width to the form */
+    margin: auto; /* Centers the form horizontally */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Adds a subtle shadow for depth */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Adds more space between form groups */
+}
+
+.form-control {
+    display: block; /* Ensures inputs take the full width */
+    width: 100%; /* Ensures inputs take the full width of the form group */
+    padding: 10px; /* More padding for better text visibility */
+    border: 1px solid #ccc; /* Subtle border styling */
+    border-radius: 4px; /* Rounded borders for the input fields */
+}
+
+/* Enhance the submit button to be more visually appealing */
+button[type="submit"] {
+    background-color: #333; /* Dark background for the button */
+    color: white; /* Text color for the button */
+    padding: 10px 20px; /* Padding around the text */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+button[type="submit"]:hover {
+    background-color: #555; /* Lighter background on hover */
+}
+
+/* Apply background color to the container of the calendar header and calendar table */
+.calendar-container {
+    background-color: #BAA06A; /* Setting the unified background color */
+    padding: 20px; /* Adds padding around the calendar for better spacing */
+    border-radius: 8px; /* Optional: adds rounded corners for aesthetics */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Optional: adds shadow for depth */
+}
+
+.calendar-header, .calendar-table {
+    background-color: transparent; /* Ensures no overriding backgrounds */
+    margin: 0; /* Removes any default margin */
+    padding: 10px 0; /* Top and bottom padding for spacing, no horizontal padding */
+}
+
+.calendar-header {
+    margin-bottom: 20px; /* Additional bottom margin for spacing between header and table */
+}
+
+.calendar-table {
+    border-collapse: collapse; /* Removes space between borders of table cells */
+    width: 100%; /* Ensures the table uses the full width of its container */
+}
+
+.calendar-table th, .calendar-table td {
+    border: 1px solid #000; /* Light borders for cells, adjust color as needed */
+    padding: 8px; /* Padding within cells for text spacing */
+    text-align: center; /* Ensures content is centered */
+}
+
+/* Enhances the readability and interactive feel */
+.calendar-navigation button {
+    background-color: #988658; /* Slightly darker than main background for contrast */
+    color: black;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.calendar-navigation button:hover {
+    background-color: #806c4f; /* Even darker on hover */
+}
+
+h3{
+    color: #000;
+    text-align: center;
+}
+
+.calendar-navigation button {
+    font-size: 20px; /* Enlarge the font size of the buttons */
+    padding: 5px 15px; /* Increase padding for better touch area and visibility */
+    margin: 0 10px; /* Add space between buttons */
+    border: none; /* Optional: removes the border from the buttons */
+    background-color: #000; /* Color of the button */
+    color: #BAA06A; /* Color of the text */
+    border-radius: 5px; /* Rounded corners for the buttons */
+    cursor: pointer; /* Cursor indicates clickable item */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.calendar-navigation button:hover {
+    background-color: #000; /* Slightly darker shade on hover */
+}
+
+#today {
+    font-weight: bold; /* Makes the 'Today' button text bolder */
+    text-transform: uppercase; /* Optional: capitalizes 'Today' for emphasis */
+    color: #BAA06A;
+}
+
+.calendar-container {
+    text-align: center;
+    background-color: #BAA06A;
+    padding: 70px;
+    border-radius: 5px;
+}
+
+.calendar-header {
+    margin-bottom: 10px;
+}
+
+.calendar-navigation {
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* Adjust this to change the relative space between buttons */
+    gap: 5px; /* Reduce the gap between grid columns */
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto; /* Centers the navigation buttons within the container */
+    max-width: 300px; /* Control the maximum width to keep buttons closer */
+}
+
+#previous, #today, #next {
+    padding: 8px 16px; /* Uniform padding for all buttons */
+    font-size: 1.2em; /* Uniform font size for visibility */
+    background-color: #000; /* Background color for the buttons */
+    color: #BAA06A; /* Text color for the buttons */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer; /* Cursor pointer to indicate clickable */
+}
+
+#previous, #next {
+    background-color: black; /* Less emphasis on these buttons */
+    color: #BAA06A; /* Color similar to the main theme */
+}
+
+#today {
+    background-color: #000; /* More emphasis on the Today button */
+    color: #BAA06A; /* Dark color for text */
+}
+
+/* Hover effects for interactivity */
+#previous:hover, #next:hover, #today:hover {
+    background-color: #000; /* Light gray background on hover */
+    color: #BAA06A; /* Maintain dark text color on hover */
+}
+
+.custom-hr {
+    border-top: 7px solid #BAA06A; /* Épaisseur de 3px et couleur #BAA06A */
+    margin: 20px 0; /* Marge de 20px en haut et en bas pour la séparation */
+}
+
+.filter-bar {
+    display: flex;
+    justify-content: center; /* Centré pour un espacement uniforme */
+    align-items: center;
+    background-color: #000000; /* Noir */
+    padding: 20px; /* Plus de padding pour un meilleur aspect */
+    margin: 40px auto; /* Plus de marge extérieure */
+    border-radius: 20px; /* Coins plus arrondis */
+}
+
+.filter-bar .filter-text {
+    color: #BAA06A; /* Beige doré en grande taille */
+    font-size: 1.5em; /* Taille de police augmentée */
+    font-weight: bold;
+    margin-right: 10px; /* Espace après le texte */
+}
+
+.filter-bar button,
+.filter-bar select {
+    background-color: #BAA06A; /* Beige doré */
+    border: none;
+    padding: 15px 30px; /* Plus grand padding pour agrandir les éléments */
+    margin: 20px 10px; /* Réduction de l'espace entre les éléments */
+    border-radius: 20px; /* Coins plus arrondis */
+    color: #000000; /* Noir */
+    font-weight: bold;
+    font-size: 1.3em; /* Agrandissement de la police */
+}
+
+.filter-bar input {
+    background-color: #BAA06A; /* Beige doré */
+    color: #000000; /* Noir pour le texte à l'intérieur */
+    max-width: 250px; /* Ajustement de la largeur maximum */
+    padding: 15px 30px; /* Plus grand padding */
+    border-radius: 20px; /* Coins plus arrondis */
+    font-weight: bold;
+    font-size: 1.1em; /* Agrandissement de la police */
+}
+
+.filter-bar input::placeholder {
+    color: black; /* Couleur du placeholder en noir */
+}
+
+.filter-bar button {
+    cursor: pointer;
+}
+
+/* Styles pour les états hover et focus */
+.filter-bar button:hover,
+.filter-bar input:hover,
+.filter-bar select:hover {
+    background-color: #d4b87f; /* Couleur de fond plus claire au survol */
+}
+
+.filter-bar input:focus,
+.filter-bar select:focus {
+    outline: 3px solid #d4b87f; /* Bordure plus épaisse pour l'état de focus */
+}
+
+
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centrer les cartes horizontalement */
+    padding: 10px !important; /* Espace autour du contenu, avec haute priorité */
+}
+.card {
+    background-color: #BAA06A; /* Couleur de fond des cartes */
+    border-radius: 10px; /* Bords arrondis pour les cartes */
+    width: 1800px; /* Largeur fixe pour toutes les cartes */
+    padding: 15px; /* Espace à l'intérieur des cartes */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Ombre portée pour les cartes */
+
+}
+.card img {
+    max-width: 100%; /* Les images ne dépassent pas leur contenant */
+    border-radius: 5px; /* Bords arrondis pour les images */
+}
+.card button {
+    background-color: #BAA06A; /* Couleur de fond des boutons */
+    color: black; /* Couleur de texte pour les boutons */
+    border: none; /* Pas de bordure pour les boutons */
+    border-radius: 20px; /* Bords arrondis pour les boutons */
+    padding: 10px 20px; /* Espace à l'intérieur des boutons */
+    cursor: pointer; /* Curseur pointeur au survol des boutons */
+}
+.card button:hover {
+    background-color: #555; /* Changement de couleur au survol */
+}
+
+.card-container {
+    width: 100%; /* Utilisez la largeur complète de la zone de contenu */
+    border: 1px solid #000000; /* Optionnel : ajoutez une bordure pour bien délimiter les cartes */
+    padding: 1rem; /* Espace à l'intérieur de chaque carte */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optionnel : ajoutez une légère ombre pour un effet de profondeur */
+    border-radius: 0.5rem; /* Optionnel : ajoutez des coins arrondis */
+    margin-bottom: -170px !important; /* Réduit l'espace après chaque carte-container avec haute priorité */
+}
+
+/* Assurez-vous que les conteneurs de détails et d'image à l'intérieur de chaque card-container ne sont pas configurés pour s'afficher en flex row */
+.details, .image-stack {
+    width: 100%; /* Prend la largeur complète du conteneur */
+    display: block; /* Chaque élément s'affiche sur une nouvelle ligne */
+}
+.details {
+    margin-right: 20px;
+    background-color: #BAA06A;
+    color: #000000;
+    border-radius: 12px;
+    padding: 20px;
+
+}
+
+.details button {
+    display: block; /* Permet au bouton de remplir la largeur de son conteneur */
+    width: auto; /* Le bouton a la largeur de son contenu */
+}
+
+button {
+    background-color: #000000; /* Fond du bouton blanc */
+    color: #BAA06A; /* Texte du bouton noir */
+    border: none;
+    border-radius: 20px;
+    padding: 10px 30px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 20px; /* Espace au-dessus du bouton */
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: #2c2323; /* Gris au survol */
+}
+
+
+
+.res{
+    font-size: 40px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+li{
+    font-size: 20px
+}
+
+.image-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin-left: 20px;
+    max-width: calc(100% - 170px); /* Largeur maximale pour éviter que les images ne sortent du cadre */
+}
+
+
+.image-stack {
+    display: flex;
+    justify-content: flex-end;
+    position: relative; /* Positionnement relatif pour superposer les images */
+    max-width: 100%; /* Largeur maximale pour les images */
+    padding-left: 60px;
+}
+.image-stack img {
+    max-width: 300px; /* Réduire la largeur maximale des images */
+    height: auto; /* Hauteur ajustée automatiquement pour maintenir les proportions */
+}
+.image-stack img.top {
+    position: absolute; /* Superpose la deuxième image sur la première */
+    top: -250px; /* Ajustez ces valeurs en fonction de votre mise en page */
+    left: 900px;
+    z-index: 5; /* S'assure que l'image 'top' est au-dessus */
+}
+.image-stack img.bottom {
+    position: relative; /* Changement de la position pour la rendre relative */
+    z-index: 0;
+    top: -290px; /* Ajustement vers le haut */
+}
+
+
+.details{
+    margin-left: 20px;
+    font-size:18px;
+
+}
+
+.login-box {
+    background-color: #BAA06A;
+    padding: 3rem;
+    width: 100%;
+    max-width: 900px;
+    height: 730px;
+    color: #000;
+    margin: auto; /* Ensures the box is centered horizontally */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the items horizontally in a flex container */
+  }
+  
+  .custom-input, .custom-input:focus {
+    background-color: #000;
+    border: 2px solid #000;
+    color: #BAA06A; /* Placeholder text color */
+    width: 1200px; /* Makes the input full width of its parent container */
+    height: 60px;
+    padding: 0.5rem; /* Adds some padding inside the input */
+    margin-bottom: 1rem; /* Adds space below the input */
+    border-radius: 0px;
+    text-align: left; /* Keeps the text aligned to the left */
+  outline: none; /* Removes the outline that might appear on focus */
+  box-shadow: none; /* Removes any box shadow */
+  }
+  
+  .custom-input::placeholder {
+    color: #BAA06A; /* Placeholder text color */
+    opacity: 1; /* Ensure placeholders are fully opaque */
+    text-decoration: none;
+
+  }
+  
+  
+  .custom-button {
+    background-color: #000000 !important; /* Black background for the button */
+    color: #BAA06A !important; /* Gold text color for the button */
+    border: none;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    width: 200px !important;
+    margin: 0 auto; /* Centers the button horizontally */
+    display: block; /* Makes the button a block-level element */
+    border-radius: 25px !important; /* Significantly rounded corners */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    text-decoration: underline;
+  }
+  
+  
+  .custom-button:hover {
+    background-color: #0b0a08; /* Slightly different shade of gold for hover effect */
+  }
+  
+  .custom-link {
+    color: #000; /* Black color for the links */
+    text-decoration: underline; /* Removes the underline */
+    text-align: center;
+    font-size: 18px;
+
+  }
+  
+  .custom-link:hover {
+    color: #000; /* Gold color for hover state */
+    text-decoration: underline; /* Adds an underline on hover */
+    text-align: center;
+
+  }
+
+  .link-text-bold {
+    font-weight: bold;
+    color: #000; /* Or any color you want for the non-link text */
+    font-size: 18px;
+  }
+  
+  
+  .form-label {
+    color: #000 ; /* Black color for the labels */
+    text-align: center;
+    text-decoration: underline;
+
+  }
+  
+  .form-check-label {
+    color: #000 !important; /* Black color for checkbox label */
+    text-align: center;
+
+  }
+
+  /* Hide the default checkbox */
+.form-check-input {
+    visibility: hidden;
+    position: absolute;
+  }
+  
+  /* Create a custom box to replace the visual appearance of the checkbox */
+  .form-check-input + .form-check-label:before {
+    content: "";
+    display: inline-block;
+    width: 0.8em;
+    height: 0.8em;
+    vertical-align: middle;
+    margin-right: 0.5em;
+    background-color: #000; /* Make the box black */
+  }
+  
+  /* When the checkbox is checked, add a "checkmark" */
+  .form-check-input:checked + .form-check-label:before {
+    content: "\2713"; /* Unicode checkmark character */
+    color: #BAA06A; /* The color of the checkmark */
+    text-align: center;
+    line-height: 0.8em; /* Adjust the line height to vertically center the checkmark */
+  }
+  
+
+    .text-center-black {
+    text-align: center;
+    color: #000;
+    font-size: 40px;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  .calendar-legend-container {
+    background-color: #BAA06A;
+    padding: 10px;
+    border-radius: 10px; /* Arrondit les coins du rectangle */
+    display: flex;
+    justify-content: center;
+    margin-left: 200px;
+    margin-top: 20px; /* Espace au-dessus de la légende, ajustez selon les besoins */
+    width: 300px; /* Largeur du carré de couleur */
+
+  }
+  
+  .calendar-legend {
+    background-color: #FFF; /* Fond blanc pour la légende */
+    border-radius: 5px;
+    padding: 10px;
+    display: inline-flex; /* Pour aligner les éléments de la légende côte à côte */
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Espace entre les éléments de la légende */
+  }
+  
+  .legend-color {
+    width: 20px; /* Largeur du carré de couleur */
+    height: 20px; /* Hauteur du carré de couleur */
+    display: inline-block;
+    margin-right: 5px; /* Espace entre le carré de couleur et le texte */
+    border-radius: 2px; /* Légèrement arrondi pour les carrés de couleur */
+  }
+  
+  .available {
+    background-color: #000;
+    color: #000000;
+}
+
+/* Ajoutez ces styles à votre fichier styles.css */
+
+/* Couleur de fond et bordure du tableau */
+.table {
+    background-color: #BAA06A; /* Couleur de fond du tableau */
+    color: #BAA06A; /* Couleur du texte du tableau */
+}
+
+/* Couleur de fond des cellules d'en-tête */
+.table thead th {
+    background-color: #BAA06A; /* Couleur de fond des cellules d'en-tête */
+    color: rgb(0, 0, 0); /* Couleur du texte des cellules d'en-tête */
+}
+
+/* Couleur de fond des cellules de données */
+.table tbody td {
+    background-color: #000000; /* Couleur de fond des cellules de données */
+    color: #BAA06A; /* Couleur du texte des cellules de données */
+}
+
+/* Bordure du tableau */
+.table {
+    border: 2px solid #BAA06A; /* Couleur des bordures du tableau */
+}
+
+/* Police d'écriture des en-têtes de colonnes */
+.table thead th,td{
+    font-size: 18px; /* Taille de la police d'écriture */
+}
+
+/* Taille des boutons */
+.btn {
+    padding: 0.375rem 0.75rem; /* Réduit le padding */
+    font-size: 14px; /* Réduit la taille de la police d'écriture */
+    background-color: #BAA06A; /* Couleur de fond */
+    color: black; /* Couleur de texte */
+}
+
+/* Alignement horizontal des boutons */
+td button {
+    display: inline-block; /* Affiche les boutons en ligne */
+    margin: 0px; /* Marge à droite pour l'espacement */
+    padding: 0px;
+    background-color: #BAA06A;
+    color: #000;
+}
+
+.btn-custom {
+    font-size: 13px; /* Modifier la taille du texte selon vos préférences */
+    margin: 3px;
+    padding: 10px;
+}
+
+
+/* Conteneur flex pour les boutons */
+.actions-container {
+    display: flex; /* Utilise flexbox */
+    align-items: center; /* Aligne les éléments verticalement au centre */
+}
+
+#reservationsTable th {
+    color: #000000;
+
+}
+    #reservationsTable td {
+    border: 2px solid #BAA06A;
+    color: #BAA06A;
+}
+
+h1 {
+    color: #BAA06A;
+}
+input, textarea {
+    background-color: #BAA06A;
+    color: #000000;
+    border: 1px solid #BAA06A;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+button {
+    background-color: #BAA06A;
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+button:hover {
+    background-color: #a3915f;
+}
+.service-entry {
+    background-color: #000000;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.button-container {
+    text-align: center; /* Centrage horizontal des éléments blocs à l'intérieur */
+}
+
+.vip-subscription-container {
+    display: flex;
+    justify-content: space-around; /* Meilleur espacement */
+    max-width: 1200px; /* Largeur augmentée */
+    margin: 20px auto;
+    color: #000;
+    text-align: center;
+}
+
+.vip-plan {
+    background: #BAA06A;
+    padding: 30px; /* Padding plus grand pour plus de contenu */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 32%; /* Ajustement pour un meilleur équilibre visuel */
+    border-radius: 10px; /* Rayon de bordure augmenté */
+}
+
+.vip-plan-title {
+    color: #000000;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 34px; /* Taille du titre corrigée et augmentée */
+    margin-bottom: 10px; /* Espacement après le titre */
+}
+
+.vip-plan-price {
+    font-size: 16px;
+    color: #000000;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px; /* Espacement après le prix */
+}
+
+.vip-plan-features {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px; /* Espacement ajouté avant la liste */
+}
+
+.vip-plan-features li {
+    padding: 8px 0;
+    border-bottom: 1px solid #000000;
+    font-size: 16px; /* Taille de la police des fonctionnalités maintenue */
+}
+
+.vip-plan-features li:last-child {
+    border-bottom: none;
+}
+
+.icon-container {
+    width: 100%; /* Ajuster selon la largeur désirée */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.vip-plan-icon {
+    height: 100px; /* Taille ajustée selon les besoins */
+    width: auto; /* Conserver les proportions */
+    display: inline-block; /* Centrage de l'icône */
+}
+
+.subscribe-btn {
+    background-color: #000000; /* Fond noir */
+    color: #BAA06A; /* Couleur de l'écriture */
+    border: none; /* Aucune bordure */
+    padding: 10px 20px; /* Espacement interne pour rendre le bouton plus grand */
+    font-size: 16px; /* Taille de la police */
+    cursor: pointer; /* Cursor en forme de pointeur pour indiquer qu'il s'agit d'un bouton cliquable */
+    transition: background-color 0.3s ease; /* Transition pour l'effet au survol */
+}
+
+.subscribe-btn:hover {
+    background-color: #333333; /* Changement de couleur au survol pour un meilleur feedback visuel */
+    color: #BAA06A;
+}
+
+.about-container {
+    display: flex;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.story-block {
+    background: white;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 30%;
+    border-radius: 10px;
+    text-align: center; /* Centering text */
+}
+
+.story-block img {
+    width: 100%; /* Make image fill the container */
+    height: auto; /* Keep image aspect ratio */
+    border-bottom: 1px solid #eee; /* A subtle separator */
+    margin-bottom: 20px; /* Space between image and text */
+}
+
+.story-block h2 {
+    color: #007BFF;
+    font-size: 24px; /* Larger font size for headings */
+}
+
+.story-block p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.5; /* More readable line spacing */
+}
+
+.contact-container {
+    display: flex;
+    justify-content: space-around; /* Updated for better spacing in different screen sizes */
+    margin: 50px auto; /* Centered horizontally */
+    max-width: 1200px; /* Max width to control layout on large screens */
+}
+
+.contact-section {
+    width: 30%;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.contact-icon {
+    height: 80px; /* Updated size */
+    width: auto;
+    margin-bottom: 20px;
+}
+
+.contact-title {
+    margin: 20px 0 10px;
+    font-size: 24px;
+}
+
+.contact-description {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #BAA06A;
+}
+
+.contact-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #000000;
+    background-color: #BAA06A;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contact-button:hover {
+    background-color: #BAA06A;
+}
+
+.styled-title{
+    text-decoration: underline;
+}
+
+.custom-form-container {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #000000; /* Neutral lighter grey */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Subtle shadow */
+}
+
+.custom-message-form {
+    max-width: 600px;
+    margin: auto;
+}
+
+.custom-form-group {
+    margin-bottom: 20px; /* Adequate spacing between fields */
+}
+
+.custom-form-control {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #BAA06A; /* Lighter grey border */
+    border-radius: 6px;
+    font-size: 16px; /* Slightly larger font for better readability */
+}
+
+.custom-send-button {
+    background-color: #BAA06A; 
+    color: #000;
+    border: none;
+    padding: 10px 25px;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 225px;
+}
+
+.custom-send-button:hover {
+    background-color: #BAA06A; /* Darker blue on hover */
+}
+
+.registration-box {
+    background-color: #BAA06A; /* Black background for the form */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 800px;
+    height: 750px;
+    color: #000;
+}
+.form-control {
+    background-color: #000;
+    color: #BAA06A;
+    border: 1px solid #000;
+    border-radius: 0% !important;
+}
+.custom-link, .custom-link:hover {
+    color: #001; /* Light blue for links */
+}
+.btn-custom {
+    background-color: #000 !important;
+    color: #BAA06A !important;
+    width: 20%;
+    margin-left: 300px;
+    border-radius: 20px;
+}
+
+.btn-custom:hover{
+    color: gold;
+}
+
+.link-text-bold {
+    font-weight: bold;
+}
+
+.form-control::placeholder {
+    color: #BAA06A; /* Couleur spécifiée pour le placeholder */
+    font-size: 12px;
+}
+
+label {
+    font-size: 13px;
+    margin-left: 10px;
+    text-decoration: underline;
+}
+
+.small-input {
+    width: 650px; /* Ajustement de la largeur */
+}
+
+.center-input {
+    display: flex;
+    flex-direction: column; /* Alignement en colonne */
+    align-items: center; /* Centrage horizontal */
+    margin-bottom: 15px;  /* Ajout de marge en bas pour l'espace */
+}
+
+.inscription-title {
+    color: black; /* Couleur du texte de l'inscription */
+    text-decoration: underline; /* Soulignement */
+    text-align: center; /* Centrage */
+    margin-bottom: 20px; /* Marge en bas */
+}
+
+.about-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #000000;
+    display: flex;
+    flex-direction: column;
+    gap: 50px; /* Espaces entre les blocs ajustés */
+    margin-left: 50px;
+}
+
+.about-story-block {
+    display: flex;
+    align-items: center;
+    padding: 30px; /* Padding accru pour plus d'espace interne */
+    background-color: #000000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 1600px;
+    height: auto; /* Hauteur automatique pour ajuster au contenu */
+    margin: auto;
+    font-weight: bold;
+}
+
+.image-left .about-icon, .image-right .about-icon {
+    width: 800px; /* Taille de l'image augmentée pour plus de visibilité */
+    height: auto; /* Maintient le ratio de l'image */
+}
+
+.image-left .about-icon {
+    margin-right: 30px; /* Espace conservé entre l'image et le contenu */
+}
+
+.image-right {
+    flex-direction: row-reverse; /* Maintient l'inversion pour l'image à droite */
+}
+
+.image-right .about-icon {
+    margin-left: 30px; /* Espace entre l'image et le contenu ajusté */
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 20px; /* Padding autour du texte */
+    max-width: 900px; /* Contrôle de la largeur maximale pour le texte */
+}
+
+.about-heading {
+    font-size: 64px; /* Taille du titre augmentée pour plus d'impact */
+    color: #BAA06A;
+    margin-bottom: 20px; /* Espacement ajusté sous le titre */
+    text-decoration: underline;
+}
+
+.about-text {
+    font-size: 20px;
+    line-height: 2.0; /* Interligne augmenté pour une meilleure lisibilité */
+    color: #BAA06A;
+    text-align: justify; /* Texte justifié pour une présentation propre */
+}
+
+.btn-reservation{
+    width: 95px;
+    background-color: #000;
+    color: #BAA06A;
+}
+
+.btn-reservation:hover{
+    color: gold;
+    background-color: #0b0a08;
+}
+
+.unavailable {
+    background-color: black;
+    color: #BAA06A;
+}
+.available {
+    background-color: #BAA06A;
+    color: #000000 !important;
+}
+
+.calendar-controls {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#currentMonth {
+    margin: 0 20px;
+}
+
+
+.calendar-day-available {
+    background-color: #BAA06A;
+    color: black;
+}
+.calendar-day-unavailable {
+    background-color: black;
+    color: #BAA06A;
+}
+
+
+.custom-form-container {
+    background-color: #BAA06A;
+    padding: 20px;
+    border-radius: 5px;
+    width: 60%;
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.custom-form-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #000000;
+}
+.custom-form-group {
+    margin-bottom: 15px;
+}
+.custom-form-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #000000;
+}
+.custom-form-input, 
+.custom-form-select, 
+.custom-form-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #000000;
+    color: #BAA06A;
+}
+.custom-form-textarea {
+    resize: vertical;
+}
+.custom-form-file {
+    padding: 3px;
+    background-color: #000000;
+    color: #BAA06A;
+}
+.custom-form-checkbox {
+    width: auto;
+    transform: scale(1.5);
+    accent-color: #000000; /* For browsers supporting the accent-color property */
+}
+.custom-form-submit {
+    background-color: #000000;
+    color: #BAA06A;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin: 10px auto;
+}
+.custom-form-submit:hover {
+    background-color: #333333;
+}
+.custom-inline-group {
+    display: flex;
+    justify-content: space-between;
+}
+.custom-inline-group > .custom-form-group {
+    width: 48%;
+}
+.custom-form-note {
+    color: #000000;
+    text-align: center;
+}
+.custom-form-checkbox-group {
+    text-align: center;
+    margin-bottom: 15px;
+}
+.custom-form-checkbox-group label {
+    margin-left: 10px;
+    color: #000000;
+}
+.error-message {
+    color: red;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.modal-content {
+    background-color: #BAA06A !important;
+    color: black;
+}
+
+/* Styles pour le formulaire de disponibilité */
+.availability-container {
+    background-color: #BAA06A;
+    color: #000;
+    padding: 20px;
+    border-radius: 10px;
+    width: 60%;
+    margin: 150px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.availability-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #000;
+    font-size: 34px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.availability-form-group {
+    margin-bottom: 15px;
+}
+
+.availability-form-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #000;
+    font-size: 20px;
+}
+
+.availability-form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #BAA06A;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #000;
+    color: #BAA06A;
+}
+
+.availability-form-submit {
+    background-color: #BAA06A;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin: 10px auto;
+}
+
+.availability-form-submit:hover {
+    background-color: #d4b87f;
+}
+
+/* Styles pour la modal */
+.modal-content {
+    background-color: #000 !important;
+    color: #BAA06A;
+}
+
+.modal-title {
+    color: #BAA06A;
+    text-align: center;
+}
+
+.modal-body p {
+    color: #BAA06A;
+}
+
+.availability-modal-close-btn {
+    background-color: #BAA06A;
+    color: #000;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.availability-modal-close-btn:hover {
+    background-color: #d4b87f;
+}

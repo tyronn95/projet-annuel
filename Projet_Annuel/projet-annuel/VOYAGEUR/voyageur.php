@@ -1,24 +1,6 @@
-
-
-
 <?php
-// Démarrer la session
-session_start();
-
-// Vérifier si l'utilisateur est connecté
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-    // L'utilisateur est connecté
-    $userId = $_SESSION['id']; // Récupérer l'ID de l'utilisateur
-
-
-    // Effectuer d'autres opérations comme des requêtes de base de données
-} else {
-    // L'utilisateur n'est pas connecté, rediriger vers la page de connexion
-    header("location: login.php");
-    exit;
-}
+include '../GLOBAL/includes/session_verif.php';
 ?>
-
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -141,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Fonction pour réserver une réservation
     window.reserve = function(reservationId) {
-        const userId = 1; // Supposé que l'ID de l'utilisateur soit 1 pour cet exemple
+        const userId = <?php echo json_encode($_SESSION['id']); ?>; // Récupérer l'ID de l'utilisateur depuis la session
         fetch('http://localhost:5000/reservations/reserve', {
             method: 'POST',
             headers: {

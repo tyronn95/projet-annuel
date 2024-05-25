@@ -187,8 +187,24 @@ app.post('/reservations', (req, res) => {
     });
 });
 
-// Get all reservation dates
 app.get('/reservations', (req, res) => {
+    pool.getConnection((err, connection) => {
+        if (err) throw err;
+
+        connection.query('SELECT * FROM reservations WHERE status != "reserved"', (err, rows) => {
+            connection.release();
+
+            if (!err) {
+                res.send(rows);
+            } else {
+                console.error("Erreur lors de la récupération des réservations:", err);
+                res.status(500).json({ error: "Erreur lors de la récupération des réservations" });
+            }
+        });
+    });
+});
+
+app.get('/reservations/admin', (req, res) => {
     pool.getConnection((err, connection) => {
         if (err) throw err;
 
@@ -204,6 +220,34 @@ app.get('/reservations', (req, res) => {
         });
     });
 });
+
+// Supprimer une réservation
+app.delete('/reservations/:id/delete', (req, res) => {
+    const reservationId = req.params.id;
+    console.log(`Tentative de suppression de la réservation avec ID: ${reservationId}`);
+    pool.getConnection((err, connection) => {
+        if (err) {
+            console.error("Erreur de connexion à la base de données:", err);
+            return res.status(500).json({ error: "Erreur de connexion à la base de données" });
+        }
+        console.log(`connected as id ${connection.threadId}`);
+
+        connection.query('DELETE FROM reservations WHERE id = ?', [reservationId], (err, result) => {
+            connection.release();
+            if (err) {
+                console.error("Erreur lors de la suppression de la réservation:", err);
+                return res.status(500).json({ error: "Erreur lors de la suppression de la réservation" });
+            }
+            if (result.affectedRows === 0) {
+                console.log(`Aucune réservation trouvée avec l'ID: ${reservationId}`);
+                return res.status(404).json({ message: "Aucune réservation trouvée avec cet ID" });
+            }
+            console.log(`Réservation avec l'ID: ${reservationId} a été supprimée.`);
+            res.json({ message: `Réservation avec l'ID: ${reservationId} a été supprimée.` });
+        });
+    });
+});
+
 
 app.get('/reservations/filter', (req, res) => {
     pool.getConnection((err, connection) => {
@@ -546,6 +590,39 @@ app.post('/subscription', (req, res) => {
     });
 });
 
+app.get('/reservations/:id/details', (req, res) => {
+    const reservationId = req.params.id;
+    pool.getConnection((err, connection) => {
+        if (err) {
+            console.error("Failed to connect to the database:", err);
+            return res.status(500).json({ error: "Database connection error" });
+        }
+
+        connection.query('SELECT * FROM reservations WHERE id = ?', [reservationId], (err, results) => {
+            if (err) {
+                connection.release();
+                console.error("Error retrieving reservation details:", err);
+                return res.status(500).json({ error: "Error retrieving reservation details" });
+            }
+            if (results.length === 0) {
+                connection.release();
+                return res.status(404).json({ message: "No details found for this reservation" });
+            }
+            
+            const reservation = results[0];
+            
+            connection.query('SELECT * FROM reservation_details WHERE reservation_id = ?', [reservationId], (err, details) => {
+                connection.release();
+                if (err) {
+                    console.error("Error retrieving additional reservation details:", err);
+                    return res.status(500).json({ error: "Error retrieving additional reservation details" });
+                }
+                reservation.details = details;
+                res.json(reservation);
+            });
+        });
+    });
+});
 
 
 app.get('/reservations/:id/details', (req, res) => {
@@ -570,6 +647,7 @@ app.get('/reservations/:id/details', (req, res) => {
         });
     });
 });
+
 
 // Exemple de route pour récupérer les prestations
 app.get('/api/prestations', (req, res) => {

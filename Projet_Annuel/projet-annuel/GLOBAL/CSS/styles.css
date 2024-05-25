@@ -1612,3 +1612,25 @@ label {
 .availability-modal-close-btn:hover {
     background-color: #d4b87f;
 }
+
+
+.btn-view {
+    background-color: #BAA06A;
+    color: black;
+}
+.btn-edit {
+    background-color: #BAA06A;
+    color: black;
+}
+.btn-delete {
+    background-color: #BAA06A;
+    color: black;
+}
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+.action-buttons button {
+    flex: 1;
+    margin: 0 2px;
+}

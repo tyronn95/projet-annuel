@@ -1,23 +1,9 @@
 
-
-
 <?php
-// Démarrer la session
-session_start();
-
-// Vérifier si l'utilisateur est connecté
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-    // L'utilisateur est connecté
-    $userId = $_SESSION['id']; // Récupérer l'ID de l'utilisateur
-
-
-    // Effectuer d'autres opérations comme des requêtes de base de données
-} else {
-    // L'utilisateur n'est pas connecté, rediriger vers la page de connexion
-    header("location: login.php");
-    exit;
-}
+include '../GLOBAL/includes/session_verif.php';
 ?>
+
+
 
 
 <!DOCTYPE html>

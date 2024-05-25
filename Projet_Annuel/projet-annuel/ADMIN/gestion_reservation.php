@@ -1,19 +1,5 @@
 <?php
-// Démarrer la session
-session_start();
-
-// Vérifier si l'utilisateur est connecté
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-    // L'utilisateur est connecté
-    $userId = $_SESSION['id']; // Récupérer l'ID de l'utilisateur
-
-
-    // Effectuer d'autres opérations comme des requêtes de base de données
-} else {
-    // L'utilisateur n'est pas connecté, rediriger vers la page de connexion
-    header("location: ../PAGE/connexion.php");
-    exit;
-}
+include '../GLOBAL/includes/session_verif.php';
 ?>
 
 <!DOCTYPE html>
@@ -26,8 +12,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     <link href="../GLOBAL/CSS/styles.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light header-bg">
@@ -76,6 +60,8 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             <th>Destination</th>
             <th>Prix</th>
             <th>Type de propriété</th>
+            <th>Statut</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -105,56 +91,115 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('http://localhost:5000/reservations')
-        .then(response => response.json())
-        .then(reservations => {
-            const tableBody = document.getElementById('reservationsTable').getElementsByTagName('tbody')[0];
-            reservations.forEach(reservation => {
-                let row = tableBody.insertRow();
-                let cells = [];
-                for (let i = 0; i < 6; i++) {  // Ajoute une cellule supplémentaire pour le bouton
-                    cells.push(row.insertCell(i));
-                }
+    loadReservations();
 
-                const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-                cells[0].innerHTML = new Date(reservation.start).toLocaleDateString('fr-FR', options);
-                cells[1].innerHTML = new Date(reservation.end).toLocaleDateString('fr-FR', options);
-                cells[2].innerHTML = reservation.destination;
-                cells[3].innerHTML = reservation.price;
-                cells[4].innerHTML = reservation.property_type;
+    function loadReservations() {
+        fetch('http://localhost:5000/reservations/admin')
+            .then(response => response.json())
+            .then(reservations => {
+                const tableBody = document.getElementById('reservationsTable').getElementsByTagName('tbody')[0];
+                tableBody.innerHTML = ''; // Clear previous content
+                reservations.forEach(reservation => {
+                    let row = tableBody.insertRow();
+                    let cells = [];
+                    for (let i = 0; i < 7; i++) {  // Ajoute des cellules supplémentaires pour le statut et les actions
+                        cells.push(row.insertCell(i));
+                    }
 
-                // Ajouter un bouton 'Voir Réservation'
-                cells[5].innerHTML = `<button onclick="fetchReservationDetails(${reservation.id})" class="btn btn-info">Voir Prestation</button>`;
-            });
-        })
-        .catch(error => console.error('Erreur lors de la récupération des réservations:', error));
-});
+                    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+                    cells[0].innerHTML = new Date(reservation.start).toLocaleDateString('fr-FR', options);
+                    cells[1].innerHTML = new Date(reservation.end).toLocaleDateString('fr-FR', options);
+                    cells[2].innerHTML = reservation.destination;
+                    cells[3].innerHTML = reservation.price;
+                    cells[4].innerHTML = reservation.property_type;
+                    cells[5].innerHTML = reservation.status;  // Ajouter le statut
 
-function fetchReservationDetails(reservationId) {
+                    // Ajouter les boutons 'Voir', 'Modifier' et 'Supprimer'
+                    cells[6].innerHTML = `
+                        <div class="action-buttons">
+                            <button onclick="fetchReservationDetails(${reservation.id})" class="btn btn-view">Voir</button>
+                            <button onclick="editReservation(${reservation.id})" class="btn btn-edit">Modifier</button>
+                            <button onclick="deleteReservation(${reservation.id}, this)" class="btn btn-delete">Supprimer</button>
+                        </div>
+                    `;
+                });
+            })
+            .catch(error => console.error('Erreur lors de la récupération des réservations:', error));
+    }
+
+    window.fetchReservationDetails = function(reservationId) {
     fetch(`http://localhost:5000/reservations/${reservationId}/details`)
-        .then(response => response.json())
-        .then(details => {
-            const modalBody = document.getElementById('reservationDetailsBody');
-            modalBody.innerHTML = ''; // Clear previous content
-            details.forEach(detail => {
-                const detailElement = document.createElement('p');
-                detailElement.innerHTML = `<strong>Service:</strong> ${detail.service_name}<br>
-                                           <strong>Description:</strong> ${detail.description}<br>
-                                           <strong>Date de prestation:</strong> ${new Date(detail.date_prestation).toLocaleDateString('fr-FR')}<br>
-                                           <strong>Prix:</strong> ${detail.prix.toFixed(2)} €`;
-                modalBody.appendChild(detailElement);
-            });
-            $('#reservationDetailsModal').modal('show');  // Use jQuery to show the modal
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
         })
-        .catch(error => console.error('Erreur lors de la récupération des détails de la réservation:', error));
+        .then(reservation => {
+            displayReservationDetails(reservation);
+        })
+        .catch(error => {
+            console.error('Error fetching reservation details:', error);
+            alert('Error fetching reservation details: ' + error.message);
+        });
+};
+
+
+function displayReservationDetails(reservation) {
+    const modalBody = document.getElementById('reservationDetailsBody');
+    modalBody.innerHTML = ''; // Clear previous content
+    const detailsHtml = `
+        <p><strong>ID de la Réservation:</strong> ${reservation.id}</p>
+        <p><strong>Date de début:</strong> ${new Date(reservation.start).toLocaleDateString()}</p>
+        <p><strong>Date de fin:</strong> ${new Date(reservation.end).toLocaleDateString()}</p>
+        <p><strong>Destination:</strong> ${reservation.destination}</p>
+        <p><strong>Prix:</strong> ${reservation.price} €</p>
+        <p><strong>Type de propriété:</strong> ${reservation.property_type}</p>
+        <p><strong>Statut:</strong> ${reservation.status}</p>
+    `;
+    modalBody.innerHTML = detailsHtml;
+
+    if (reservation.details && reservation.details.length > 0) {
+        reservation.details.forEach(detail => {
+            const detailElement = document.createElement('p');
+            detailElement.innerHTML = `
+                <strong>Service:</strong> ${detail.service_name}<br>
+                <strong>Description:</strong> ${detail.description}<br>
+                <strong>Date de prestation:</strong> ${new Date(detail.date_prestation).toLocaleDateString()}<br>
+                <strong>Prix:</strong> ${detail.prix.toFixed(2)} €`;
+            modalBody.appendChild(detailElement);
+        });
+    }
+    $('#reservationDetailsModal').modal('show');  // Use jQuery to show the modal
 }
 
 
+    window.editReservation = function(reservationId) {
+        // Logic to edit reservation
+        alert('Fonctionnalité de modification à implémenter pour la réservation ID: ' + reservationId);
+    }
 
-
+    window.deleteReservation = function(reservationId, button) {
+        if (confirm('Êtes-vous sûr de vouloir supprimer cette réservation ?')) {
+            fetch(`http://localhost:5000/reservations/${reservationId}/delete`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    alert(data.message);
+                    // Remove the row from the table
+                    const row = button.closest('tr');
+                    row.remove();
+                } else {
+                    alert('Erreur lors de la suppression de la réservation');
+                }
+            })
+            .catch(error => console.error('Erreur lors de la suppression de la réservation:', error));
+        }
+    }
+});
 </script>
-
-
 
 <footer>
     <h1 class="h1-footer">©2024 PCS Prestige | Mentions légales | CGV </h1>

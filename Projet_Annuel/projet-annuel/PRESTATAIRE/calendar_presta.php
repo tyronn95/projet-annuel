@@ -1,12 +1,9 @@
 <?php
-session_start();
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-    echo "<script>var userId = " . json_encode($_SESSION['id']) . ";</script>";
-} else {
-    header("location: login.php");
-    exit;
-}
+include '../GLOBAL/includes/session_verif.php';
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -32,6 +29,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
               <ul class="navbar-nav">
                 <li class="nav-item">
+                    
                   <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
                 </li>
                 <li class="nav-item">

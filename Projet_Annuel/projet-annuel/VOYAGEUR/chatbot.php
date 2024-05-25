@@ -1,3 +1,7 @@
+<?php
+include '../GLOBAL/includes/session_verif.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

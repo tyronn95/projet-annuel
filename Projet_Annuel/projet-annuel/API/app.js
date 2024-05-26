@@ -590,6 +590,7 @@ app.post('/subscription', (req, res) => {
     });
 });
 
+// Fetch specific reservation details
 app.get('/reservations/:id/details', (req, res) => {
     const reservationId = req.params.id;
     pool.getConnection((err, connection) => {
@@ -597,29 +598,16 @@ app.get('/reservations/:id/details', (req, res) => {
             console.error("Failed to connect to the database:", err);
             return res.status(500).json({ error: "Database connection error" });
         }
-
         connection.query('SELECT * FROM reservations WHERE id = ?', [reservationId], (err, results) => {
+            connection.release();
             if (err) {
-                connection.release();
                 console.error("Error retrieving reservation details:", err);
                 return res.status(500).json({ error: "Error retrieving reservation details" });
             }
             if (results.length === 0) {
-                connection.release();
                 return res.status(404).json({ message: "No details found for this reservation" });
             }
-            
-            const reservation = results[0];
-            
-            connection.query('SELECT * FROM reservation_details WHERE reservation_id = ?', [reservationId], (err, details) => {
-                connection.release();
-                if (err) {
-                    console.error("Error retrieving additional reservation details:", err);
-                    return res.status(500).json({ error: "Error retrieving additional reservation details" });
-                }
-                reservation.details = details;
-                res.json(reservation);
-            });
+            res.json(results[0]);
         });
     });
 });
@@ -644,6 +632,97 @@ app.get('/reservations/:id/details', (req, res) => {
                 return res.status(500).json({ error: "Erreur lors de la récupération des détails de la réservation" });
             }
             res.json(results);
+        });
+    });
+});
+
+app.put('/reservations/:id/update', (req, res) => {
+    const { id } = req.params;
+    const { property_type, start, end, destination, price, status } = req.body;
+
+    pool.getConnection((err, connection) => {
+        if (err) {
+            console.error("Failed to connect to the database:", err);
+            return res.status(500).send({ error: "Database connection error", details: err.toString() });
+        }
+
+        const sql = `
+            UPDATE reservations 
+            SET 
+                property_type = ?, 
+                start = ?, 
+                end = ?, 
+                destination = ?, 
+                price = ?, 
+                status = ? 
+            WHERE id = ?`;
+
+        const params = [
+            property_type, 
+            start || null,  // Set to NULL if empty
+            end || null,    // Set to NULL if empty
+            destination, 
+            price, 
+            status, 
+            id
+        ];
+
+        connection.query(sql, params, (error, results) => {
+            connection.release();
+            if (error) {
+                console.error("Error updating reservation:", error);
+                return res.status(500).send({ error: "Error updating reservation", details: error.toString() });
+            }
+            if (results.affectedRows === 0) {
+                return res.status(404).send({ message: "No reservation found with the given ID" });
+            }
+            res.send({ success: true, message: "Reservation updated successfully" });
+        });
+    });
+});
+
+
+// Get reservation details along with services
+app.get('/reservations/:id/details', (req, res) => {
+    const reservationId = req.params.id;
+
+    pool.getConnection((err, connection) => {
+        if (err) {
+            console.error("Database connection failed:", err);
+            return res.status(500).send({ error: "Database connection error", details: err.message });
+        }
+
+        const reservationQuery = `SELECT * FROM reservations WHERE id = ?`;
+        const servicesQuery = `
+            SELECT rs.*, s.name as service_name, s.description as service_description 
+            FROM reservation_services rs
+            JOIN services s ON rs.service_id = s.id
+            WHERE rs.reservation_id = ?`;
+
+        connection.query(reservationQuery, [reservationId], (error, reservationResults) => {
+            if (error) {
+                connection.release();
+                console.error("Error fetching reservation:", error);
+                return res.status(500).send({ error: "Error fetching reservation", details: error.message });
+            }
+
+            if (reservationResults.length === 0) {
+                connection.release();
+                return res.status(404).send({ message: "No reservation found with the given ID" });
+            }
+
+            const reservation = reservationResults[0];
+
+            connection.query(servicesQuery, [reservationId], (serviceError, serviceResults) => {
+                connection.release();
+                if (serviceError) {
+                    console.error("Error fetching services:", serviceError);
+                    return res.status(500).send({ error: "Error fetching services", details: serviceError.message });
+                }
+
+                reservation.services = serviceResults || []; // Ensure services is an array
+                res.send(reservation);
+            });
         });
     });
 });

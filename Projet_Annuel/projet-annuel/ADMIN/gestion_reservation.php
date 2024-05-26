@@ -25,7 +25,7 @@ include '../GLOBAL/includes/session_verif.php';
           <a class="nav-link active" aria-current="page" href="admin.php">Gestion Utilisateurs</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="gestion_reservation.php">Reservation/Prestation</a>
+          <a class="nav-link" href="gestion_reservation.php">Reservation</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="gestion_prestation.php">Suivi Prestation</a>
@@ -48,7 +48,7 @@ include '../GLOBAL/includes/session_verif.php';
 
 <br><br>
 <div class="container py-5" id="mainContainer">
-    <h1 class="mb-4 text-center">Liste des Reservations/Prestations</h1>
+    <h1 class="mb-4 text-center">Liste des Reservations</h1>
     <br>
 </div>
 
@@ -70,20 +70,69 @@ include '../GLOBAL/includes/session_verif.php';
 </table>
 
 <!-- Modal pour afficher les détails des réservations -->
-<div class="modal fade" id="reservationDetailsModal" tabindex="-1" aria-labelledby="reservationDetailsModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content" style="border-color: #BAA06A; color: #000; background-color: #BAA06A;">
+<div class="modal fade" style="color: #000" id="reservationDetailsModal" tabindex="-1" aria-labelledby="reservationDetailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="color: #000">
+    <div class="modal-content" style="border-color: #BAA06A; color: #000 !important; background-color: #BAA06A;">
       <div class="modal-header" style="background-color: #BAA06A; color: #000;">
-        <h5 class="modal-title text-center" id="reservationDetailsModalLabel">Détails de la Réservation</h5>
+        <h5 class="modal-title text-center" style = "color:black !important; text-align:center;" id="reservationDetailsModalLabel">Détails de la Réservation</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" id="reservationDetailsBody" style="background-color: #BAA06A;">
+      <div class="modal-body" id="reservationDetailsBody" style="background-color: #BAA06A; color:black;">
         <!-- Les détails de la réservation seront insérés ici -->
       </div>
       <div class="modal-footer" style="background-color: #000; color: #BAA06A;">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Reservation Modal -->
+<div class="modal fade" id="editReservationModal" tabindex="-1" aria-labelledby="editReservationModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editReservationModalLabel">Edit Reservation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="editReservationForm">
+            <div class="form-group">
+                <label for="editPropertyType">Type</label>
+                <input type="text" class="form-control" id="editPropertyType">
+            </div>
+            <div class="form-group">
+                <label for="editStartDate">Start Date</label>
+                <input type="date" class="form-control" id="editStartDate">
+            </div>
+            <div class="form-group">
+                <label for="editEndDate">End Date</label>
+                <input type="date" class="form-control" id="editEndDate">
+            </div>
+            <div class="form-group">
+                <label for="editDestination">Destination</label>
+                <input type="text" class="form-control" id="editDestination">
+            </div>
+            <div class="form-group">
+                <label for="editPrice">Price</label>
+                <input type="text" class="form-control" id="editPrice">
+            </div>
+            <div class="form-group">
+                <label for="editStatus">Status</label>
+                <select class="form-control" id="editStatus">
+                    <option>reserved</option>
+                    <option>not_reserved</option>
+                </select>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="submitEdit()">Save Changes</button>
       </div>
     </div>
   </div>
@@ -102,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 reservations.forEach(reservation => {
                     let row = tableBody.insertRow();
                     let cells = [];
-                    for (let i = 0; i < 7; i++) {  // Ajoute des cellules supplémentaires pour le statut et les actions
+                    for (let i = 0; i < 7; i++) {  // Add extra cells for status and actions
                         cells.push(row.insertCell(i));
                     }
 
@@ -112,9 +161,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     cells[2].innerHTML = reservation.destination;
                     cells[3].innerHTML = reservation.price;
                     cells[4].innerHTML = reservation.property_type;
-                    cells[5].innerHTML = reservation.status;  // Ajouter le statut
+                    cells[5].innerHTML = reservation.status;  // Add the status
 
-                    // Ajouter les boutons 'Voir', 'Modifier' et 'Supprimer'
+                    // Add 'View', 'Edit' and 'Delete' buttons
                     cells[6].innerHTML = `
                         <div class="action-buttons">
                             <button onclick="fetchReservationDetails(${reservation.id})" class="btn btn-view">Voir</button>
@@ -128,56 +177,111 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     window.fetchReservationDetails = function(reservationId) {
-    fetch(`http://localhost:5000/reservations/${reservationId}/details`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
-            }
-            return response.json();
-        })
-        .then(reservation => {
-            displayReservationDetails(reservation);
-        })
-        .catch(error => {
-            console.error('Error fetching reservation details:', error);
-            alert('Error fetching reservation details: ' + error.message);
-        });
-};
+        fetch(`http://localhost:5000/reservations/${reservationId}/details`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(reservation => {
+                if (reservation) {
+                    displayReservationDetails(reservation);
+                } else {
+                    alert('No details found for this reservation');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching reservation details:', error);
+                alert('Error fetching reservation details: ' + error.message);
+            });
+    };
 
-
-function displayReservationDetails(reservation) {
-    const modalBody = document.getElementById('reservationDetailsBody');
-    modalBody.innerHTML = ''; // Clear previous content
-    const detailsHtml = `
-        <p><strong>ID de la Réservation:</strong> ${reservation.id}</p>
-        <p><strong>Date de début:</strong> ${new Date(reservation.start).toLocaleDateString()}</p>
-        <p><strong>Date de fin:</strong> ${new Date(reservation.end).toLocaleDateString()}</p>
-        <p><strong>Destination:</strong> ${reservation.destination}</p>
-        <p><strong>Prix:</strong> ${reservation.price} €</p>
-        <p><strong>Type de propriété:</strong> ${reservation.property_type}</p>
-        <p><strong>Statut:</strong> ${reservation.status}</p>
-    `;
-    modalBody.innerHTML = detailsHtml;
-
-    if (reservation.details && reservation.details.length > 0) {
-        reservation.details.forEach(detail => {
-            const detailElement = document.createElement('p');
-            detailElement.innerHTML = `
-                <strong>Service:</strong> ${detail.service_name}<br>
-                <strong>Description:</strong> ${detail.description}<br>
-                <strong>Date de prestation:</strong> ${new Date(detail.date_prestation).toLocaleDateString()}<br>
-                <strong>Prix:</strong> ${detail.prix.toFixed(2)} €`;
-            modalBody.appendChild(detailElement);
-        });
+    function displayReservationDetails(reservation) {
+        const modalBody = document.getElementById('reservationDetailsBody');
+        modalBody.innerHTML = `
+            <p class="modal-paragraph"><strong>ID:</strong> ${reservation.id}</p>
+            <p class="modal-paragraph"><strong>Type:</strong> ${reservation.property_type}</p>
+            <p class="modal-paragraph"><strong>Start Date:</strong> ${new Date(reservation.start).toLocaleDateString()}</p>
+            <p class="modal-paragraph"><strong>End Date:</strong> ${new Date(reservation.end).toLocaleDateString()}</p>
+            <p class="modal-paragraph"><strong>Destination:</strong> ${reservation.destination}</p>
+            <p class="modal-paragraph"><strong>Price:</strong> ${reservation.price}</p>
+            <p class="modal-paragraph"><strong>Status:</strong> ${reservation.status}</p>
+            <h5 class="modal-paragraph">Services:</h5>
+            ${reservation.services.map(service => `
+                <div class="modal-paragraph service-details">
+                    <p><strong>Service Name:</strong> ${service.service_name}</p>
+                    <p><strong>Description:</strong> ${service.service_description}</p>
+                    <p><strong>Date:</strong> ${new Date(service.date_prestation).toLocaleDateString()}</p>
+                    <p><strong>Price:</strong> ${service.prix} €</p>
+                </div>
+            `).join('')}
+        `;
+        $('#reservationDetailsModal').modal('show');
     }
-    $('#reservationDetailsModal').modal('show');  // Use jQuery to show the modal
-}
-
 
     window.editReservation = function(reservationId) {
-        // Logic to edit reservation
-        alert('Fonctionnalité de modification à implémenter pour la réservation ID: ' + reservationId);
-    }
+        fetch(`http://localhost:5000/reservations/${reservationId}/details`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('editPropertyType').value = data.property_type;
+                document.getElementById('editStartDate').value = data.start.split('T')[0];
+                document.getElementById('editEndDate').value = data.end.split('T')[0];
+                document.getElementById('editDestination').value = data.destination;
+                document.getElementById('editPrice').value = data.price;
+                document.getElementById('editStatus').value = data.status;
+                document.getElementById('editReservationForm').setAttribute('data-reservation-id', reservationId);
+                $('#editReservationModal').modal('show');
+            })
+            .catch(error => {
+                console.error('Failed to fetch reservation details:', error);
+                alert('Error fetching reservation details: ' + error.message);
+            });
+    };
+
+    window.submitEdit = function() {
+        const form = document.getElementById('editReservationForm');
+        const reservationId = form.getAttribute('data-reservation-id');
+        const updatedData = {
+            property_type: document.getElementById('editPropertyType').value,
+            start: document.getElementById('editStartDate').value,
+            end: document.getElementById('editEndDate').value,
+            destination: document.getElementById('editDestination').value,
+            price: document.getElementById('editPrice').value,
+            status: document.getElementById('editStatus').value
+        };
+
+        // Validate required fields
+        if (!updatedData.start || !updatedData.end) {
+            alert('Start and End dates are required.');
+            return;
+        }
+
+        console.log("Updating reservation with ID:", reservationId, " Data:", updatedData);
+
+        fetch(`http://localhost:5000/reservations/${reservationId}/update`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(updatedData)
+        })
+        .then(response => {
+            if (!response.ok) throw new Error('Failed to update reservation, server responded with status ' + response.status);
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                $('#editReservationModal').modal('hide');
+                loadReservations();  // Reload the list of reservations to show the updated data
+                alert('Reservation updated successfully!');
+            } else {
+                alert('Failed to update reservation.');
+            }
+        })
+        .catch(error => {
+            console.error('Error updating reservation:', error);
+            alert('Error updating reservation: ' + error.message);
+        });
+    };
 
     window.deleteReservation = function(reservationId, button) {
         if (confirm('Êtes-vous sûr de vouloir supprimer cette réservation ?')) {
@@ -197,7 +301,7 @@ function displayReservationDetails(reservation) {
             })
             .catch(error => console.error('Erreur lors de la suppression de la réservation:', error));
         }
-    }
+    };
 });
 </script>
 

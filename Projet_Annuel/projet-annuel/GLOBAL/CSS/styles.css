@@ -1634,3 +1634,7 @@ label {
     flex: 1;
     margin: 0 2px;
 }
+
+.modal-paragraph {
+    color: black !important; /* Ensures text color is black */
+}

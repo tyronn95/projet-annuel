@@ -25,7 +25,7 @@ include '../GLOBAL/includes/session_verif.php';
           <a class="nav-link active" aria-current="page" href="admin.php">Gestion Utilisateurs</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="gestion_reservation.php">Reservation/Prestation</a>
+          <a class="nav-link" href="gestion_reservation.php">Reservation</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="gestion_prestation.php">Suivi Prestation</a>

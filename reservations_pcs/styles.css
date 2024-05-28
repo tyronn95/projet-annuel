@@ -1,0 +1,199 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #000; /* Fond de la page en noir */
+    color: #e2bf7d; /* Texte en doré */
+}
+
+.navbar {
+    background-color: #e2bf7d;
+}
+
+.navbar .navbar-brand img {
+    height: 100px;
+    width: auto;
+}
+
+.reservations-container {
+    background-color: #1e1e1e;
+    padding: 20px;
+    text-align: center;
+}
+
+.reservations-title {
+    color: #fff;
+}
+
+.reservation-item {
+    background-color: #e2bf7d;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 80%;
+}
+
+.reservation-details {
+    text-align: left;
+    flex: 1;
+    color: #000;
+}
+
+.services-details {
+    text-align: right;
+    flex: 1;
+    color: #000;
+}
+
+.reservation-item h3 {
+    color: #000;
+    font-size: 1.5em; /* Taille augmentée pour "Réservation" */
+}
+
+.reservation-item h4,
+.reservation-item p,
+.reservation-item ul {
+    color: #000;
+    font-size: 1em;
+}
+
+.reservation-item ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.btn-evaluer {
+    background-color: #000;
+    color: #e2bf7d;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto 0;
+}
+
+.btn-evaluer:hover {
+    background-color: #333;
+}
+
+footer {
+    background-color: #e2bf7d;
+    padding: 1px 0;
+    text-align: center;
+    color: #000;
+    font-size: 0.1em;
+}
+
+.social-icons a {
+    color: #000;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.compare-container {
+    margin-top: 30px;
+    background-color: #e2bf7d;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.compare-title {
+    color: #000;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    border: 2px solid #000;
+    display: inline-block;
+    padding: 10px 20px;
+}
+
+.compare-table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: #e2bf7d;
+    color: #000;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.compare-table th, .compare-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.compare-table th {
+    background-color: #000;
+    color: #e2bf7d;
+    text-align: left;
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 60px; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+    background-color: #000; /* Fond noir */
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    color: #e2bf7d; /* Texte doré */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    color: #e2bf7d;
+}
+
+.modal-content .form-group label {
+    color: #e2bf7d;
+}
+
+.modal-content .form-group select,
+.modal-content .form-group textarea {
+    background-color: #1e1e1e;
+    color: #e2bf7d;
+    border: 1px solid #e2bf7d;
+}
+
+.modal-content .btn-primary {
+    background-color: #e2bf7d;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+.modal-content .btn-primary:hover {
+    background-color: #e2bf7d;
+    color: #000;
+}

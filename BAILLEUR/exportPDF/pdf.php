@@ -8,7 +8,7 @@ try{
 	charset=utf8',
 	'root',
 	'root',
-	array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)	//Permet de voir correctement les rapports d'erreur
+	array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
 	);
 
 }catch(Exception $e){
@@ -27,6 +27,12 @@ $stmt = $db->prepare($sql);
 $stmt->bindParam(':chois', $_SESSION['chois'], PDO::PARAM_STR);
 $stmt->execute();
 $biens = $stmt->fetchAll();
+
+$sql = 'SELECT * FROM users WHERE username = :username';
+$stmt = $db->prepare($sql);
+$stmt->bindParam(':username', $_SESSION['username'], PDO::PARAM_STR);
+$stmt->execute();
+$users = $stmt->fetchAll();
 
 require_once 'contenu.php';
 $html = ob_get_contents();

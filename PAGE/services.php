@@ -16,14 +16,10 @@
             <div class="text-container">
             <span class="underline">Mise en valeur des publications : </span> <br> - Découvrez des logements mis en valeur à travers des annonces attrayantes, complétées par une communication fluide avec les voyageurs. <br><br> - Choisisez 1 pour un service de grande qualité où vous bénécifiererais d'une annonce prioritaire et retouche de photo et conseils <br> - 2 annonce prioritaire et retouche de photo <br>  - 3 retouche de photo <br>
             </p><br><br>
-                <!-- <div class="text-center mt-3">
-                    <button id="monBouton" class="btn">Réserver</button>
-                </div>        -->
-
                 <form id="numberForm">
                     <label for="number">Nombre :</label>
-                    <input type="number" id="number" name="number" required>
-                    <button type="submit">Envoyer</button>
+                    <input type="number" min="1" max="3" id="number" name="number" required>
+                    <button type="submit" class = "btn">Envoyer</button>
                 </form>
                 <!-- <button type="submit" name="service" value="publicite" class="btn" onclick="publicite()">Réserver</button> -->
                 <div id="resultat"></div>
@@ -42,16 +38,38 @@
             <div class="text-container">
             <p><span class="underline">Nettoyage du logement :</span> : <br>
                 - Profitez d'un espace propre et accueillant avec notre nettoyage professionnel avant et après chaque séjour. <br> </p>
-                <form action="reservation.php" method="post">
+                <!-- <form action="reservation.php" method="post">
                     <button type="submit" name="service" value="nettoyage" class="btn" onclick="nettoyage()">Réserver</button>
-                </form>
+                </form> -->
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+                        checkboxes.forEach(checkbox => {
+                            checkbox.addEventListener('click', function() {
+                                checkboxes.forEach(cb => {
+                                    if (cb !== this) {
+                                    cb.checked = false;
+                                    }
+                                });
+                            });
+                        });
+                    });
+                </script>
                 <button id="burger-menu">☰ Menu</button>
                 <div id="menu">
-                    <ul>
-                        <li><a href="#">Maxi premium</a></li>
-                        <li><a href="#">premium</a></li>
-                        <li><a href="#">basique</a></li>
-                    </ul>
+                <form action="nettoyage.php" method="post">
+                    <label for="checkbox1">Super nettoyage</label>
+                    <input type="checkbox" id="checkbox1" name="cout" value="120">
+                    <br>
+                    <label for="checkbox2">Bon nettoyage</label>
+                    <input type="checkbox" id="checkbox2" name="cout" value="40">
+                    <br>
+                    <label for="checkbox3">Nettoyage</label>
+                    <input type="checkbox" id="checkbox3" name="cout" value="20">
+                    <br>
+                    <button type="submit">Réserver</button>
+                </form>
                 </div>
                 
                 <div id="resultatN">tarif</div>
@@ -62,16 +80,16 @@
         <br><br>
         <div class="container_paris">
             <div class="content">
-            <div class="img_paris">
-                <img src="../GLOBAL/img/service.png" alt="Image Paris">
-            </div>
+                <div class="img_paris">
+                    <img src="../GLOBAL/img/service.png" alt="Image Paris">
+                </div>
             </div>
             <div class="text-container">
             <span class="underline">Assistance Continue 24/24 :</span> <br> - Notre service client dévoué est là pour répondre à toutes vos questions et besoins, à n'importe quel moment. <br><br>
                 </p><br><br>
-                <form action="reservation.php" method="post">
+                <form action="assistance.php" method="POST">
                     <button type="submit" name="service" value="assistance" class="btn">Réserver</button>
-                </form>         
+                </form>
             </div>
         </div>
         
@@ -89,9 +107,10 @@
             <p><span class="underline">Tarification Dynamique :</span> : <br>
                 - Profitez d'un espace propre et accueillant avec notre nettoyage professionnel avant et après chaque séjour. <br> </p>
             
-                <div class="text-center mt-3">
-                    <a href="reservation.php" class="btn">Réserver</a>
-                </div>         </div>
+                <form action="reservation.php" method="post">
+                    <button type="submit" name="service" value="tarification dynamique" class="btn">Réserver</button>
+                </form> 
+            </div>
         </div> 
         <br><br>
         <hr style="border: none; border-top: 4px solid #BAA06A; margin: 0; width: 100%;">

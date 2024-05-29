@@ -19,42 +19,52 @@
 
             </div>           
             <h2 class="btn-primary" id="vosNotes">Vos notes</h2>
+            <? 
+                $bdd = new PDO('mysql:host=localhost;dbname=pcs', 'root', 'root');
+
+                $requete = $bdd->prepare('SELECT avis,client FROM avis WHERE prestataire = :utilisateur_id');
+                $requete->bindParam(':utilisateur_id', $id);
+                $id = $_SESSION['username'];
+                $requete->execute();
+                $avis = $requete->fetchAll();
+                ?>
+                <ul>
+                <?php foreach ($avis as $commentaire): ?>
+                    <div class = "avisPhoto">
+                        <img src = "../GLOBAL/img/default-profil.png" alt="image de profil" style="height: 75px; width: auto;">
+                        <div class="avis">
+                            <h3><?php echo "Client",  $commentaire['client'] ?></h3>
+                            <li><?php echo  $commentaire['avis'] ?></li>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+                </ul>
             <div class = "avisPhoto">
                 <img src = "../GLOBAL/img/default-profil.png" alt="image de profil" style="height: 75px; width: auto;">
                 <div class="avis">
                     <h3>Client n°1: Philipe</h3>
                     <p>Service horrible</p> 
                 </div>
-                <? 
-                $requete = $bdd->prepare('SELECT avis FROM logements WHERE id = 1');
-                // $requete->bindParam(':utilisateur_id', $id);
-                // $id = $_SESSION['username'];
-                $requete->execute();
-                $logements = $requete->fetchAll();
-                echo "Vos logements";
-                ?>
-                <ul>
-                <?php foreach ($logements as $bien): ?>
-                        <li><?php echo  $bien['avis'] ?></li>
-                <?php endforeach; ?>
-                </ul>
             </div>    
+
             <form method="POST" action="notation.php">
                 <input name = "noteU" type="number">
                 <input type="submit">
             </form>
             <div id = "valeur">
                 <?php 
-
                     include('../global/include/BDDLocal.php');
 
-                    $sql = "SELECT note FROM logements WHERE id = 1";
+
+                    $id = $_SESSION['username'];
+                    $sql = "SELECT note FROM users WHERE username = :utilisateur_id";
                     $stmt = $bdd->prepare($sql);
+                    $stmt->bindParam(':utilisateur_id', $id); 
                     $stmt->execute();
-                    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                    echo "<p style = "color:yellow;">, "ici", "</p>";
-                    if ($row) {
-                        echo "<p style = "color:yellow;">, $row["note"], "</p>";
+                    $note = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                    if ($note) {
+                        echo "<p>", $note["note"], "</p>";
                     } else {
                         echo "Aucun résultat trouvé pour l'ID";
                     }

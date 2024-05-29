@@ -1,74 +1,83 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Vos données</title>
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-	<link href="../../GLOBAL/css/styles.css" rel="stylesheet">
-</head>
 <body>
-<header>
-            <nav class="navbar navbar-expand-lg navbar-light header-bg">
-                <a class="navbar-brand" href="/">
-                    <img src="../GLOBAL/img/logo.png" alt="Votre Logo" style="height: 200px; width: auto;">
-                </a>
-                <div class="container-fluid">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.html">Accueil</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="services.php">Services</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="a_propos.html">À propos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Abonnements</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <span class="fas fa-user" aria-hidden="true"></span>
-                    </div>
-                </div>
-            </nav>
-        </header>
-	<h1>Liste des utilisateurs</h1>
-	<table>
+	<h1>Devis</h1>
+	<table style="background-color: gold">
 		<thead>
-			<th >Nom</th>
+            <th>pseudo</th>
+			<th >id</th>
 			<th>Adresse</th>
 			<th>Date du devis</th>
-			<th>Numéro du devis</th>
-			<th>salaire</td>	
-			<th>id</td>	
+			<th>salaire</td>		
 		</thead>
 		<tbody>
 			<tr>
-				<td>Jean</td>
-				<td>4 rue du du pont neuf</td>
-				<td>27/12/04</td>
-				<td>4f65f </td>
-				<td>50e/h</td>
+                <td><? echo $_SESSION['username'] ?></td>
 				<td> <? echo $biens[0][0] ?></td>	
-
-				<td> <? echo $biens[0][1] ?></td>	
-				<td> <? echo $biens[0][2] ?></td>	
-				<td> <? echo $biens[0][3] ?></td>	
-				<tr>
+				<td> <? echo $biens[0][3], " ", $biens[0][4] ?></td>	
+				<td> <? echo $biens[0][8] ?></td>
+                <td> <? echo $biens[0][11] ?></td>
+			<tr>
+		</tbody>
+	</table>
+	<table>
+		<thead>
+            <th>pseudo</th>
+			<th >Nom</th>
+			<th>Prenom</th>	
+		</thead>
+		<tbody>
+			<tr>
+                <td><? echo $_SESSION['username'] ?></td>
+				<td> <? echo $users[0][2] ?></td>	
+				<td> <? echo $users[0][3] ?></td>
+			<tr>
 		</tbody>
 	</table>
 </body>
 </html>
+<!-- Exemple de Devis
+En-tête du Devis
+Nom de l'entreprise : Entreprise XYZ
+Adresse : 123 Rue des Exemples, 75000 Paris, France
+Téléphone : +33 1 23 45 67 89
+Email : contact@xyz.fr
+Numéro de SIRET : 123 456 789 00010
+Date du devis : 20 mai 2024
+Numéro du devis : DEVIS-2024-001
+Informations du Client
+Nom du client : Monsieur Jean Dupont
+Adresse : 456 Rue des Clients, 75000 Paris, France
+Téléphone : +33 6 12 34 56 78
+Email : jean.dupont@example.com
+Détails des Prestations
+Référence	Description	Quantité	Prix Unitaire HT	Total HT
+PROD-001	Design graphique	10 heures	50,00 €	500,00 €
+PROD-002	Développement web	20 heures	60,00 €	1 200,00 €
+PROD-003	Hébergement annuel	1 an	100,00 €	100,00 €
+Totaux
+Total HT : 1 800,00 €
+TVA (20%) : 360,00 €
+Total TTC : 2 160,00 €
+Conditions de Réalisation
+Délai de réalisation : 30 jours à compter de la validation du devis
+Modalités de paiement : 50% à la commande, 50% à la livraison
+Validité du devis : 30 jours à partir de la date d'émission
+Mentions Légales
+Ce devis est fourni à titre indicatif et ne constitue pas un engagement contractuel. Les prix et les conditions sont susceptibles de modification après une période de 30 jours.
+En cas d'acceptation du devis, merci de retourner ce document signé avec la mention "Bon pour accord".
+Signature
+Entreprise XYZ :
+
+Signature : ______________________
+
+Nom : ______________________
+
+Titre : ______________________
+
+Client :
+
+Signature : ______________________
+
+Nom : ______________________ -->

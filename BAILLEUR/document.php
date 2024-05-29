@@ -13,7 +13,7 @@
 
                 $requete = $bdd->prepare('SELECT * FROM logements WHERE proprietaire = :utilisateur_id');
                 $requete->bindParam(':utilisateur_id', $utilisateur_id);
-                $utilisateur_id = 'test';
+                $utilisateur_id = $_SESSION['username'];
                 $requete->execute();
                 $logements = $requete->fetchAll();
                 echo "Vos logements";
@@ -23,15 +23,6 @@
                         <li><?php echo  $bien['id'] ?></li>
                 <?php endforeach; ?>
                 </ul>
-            <!-- <button id="burger-menu">☰ Menu</button>
-            <div id="menu">
-                <ul>
-                    <li><a href="#">Accueil</a></li>
-                    <li><a href="#">À propos</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div> -->
             <p style = "font-weight: bold; text-decoration: underline;">• Vous voulez avoir accès : </p>
             <div id=pdf>
                 <div id="etatLieux">
@@ -47,29 +38,35 @@
             <div id = "devis">
                 <p style = "font-weight: bold; text-decoration: underline;">• Vous voulez faire un devis ?  </p><a href="exportPDF/pdf.php" class="btn btn-primary">Cliquez ici</a>
             </div>
-                <?try{
-                    $db = new PDO(
-                    'mysql:host=localhost;
-                    dbname=PCS;
-                    charset=utf8',
-                    'root',
-                    'root',
-                    array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)	//Permet de voir correctement les rapports d'erreur
-                    );
+                <?
+                // try{
+                //     $db = new PDO(
+                //     'mysql:host=localhost;
+                //     dbname=PCS;
+                //     charset=utf8',
+                //     'root',
+                //     'root',
+                //     array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)	
+                //     );
 
-                    }catch(Exception $e){
-                    die('Erreur PDO :'. $e->getMessage());
-                    }
+                //     }catch(Exception $e){
+                //         die('Erreur PDO :'. $e->getMessage());
+                //     }
 
-                    $_SESSION['chois'] = $_POST['chois'];
-
-                    $sql = 'SELECT * FROM logements WHERE id = :chois';
-                    $stmt = $db->prepare($sql);
-                    $stmt->bindParam(':chois', $_SESSION['chois'], PDO::PARAM_STR);
-                    $stmt->execute();
-                    $biens = $stmt->fetchAll();
-
-                    echo $biens[0][0];
+                //     if($_POST['chois']){
+                //         $_SESSION['chois'] = $_POST['chois'];
+                //     }else{
+                //         echo "Aucun chois";
+                //     }
+                    
+                //     $sql = 'SELECT * FROM logements WHERE id = :chois';
+                //     $stmt = $db->prepare($sql);
+                //     $stmt->bindParam(':chois', $_SESSION['chois'], PDO::PARAM_STR);
+                //     $stmt->execute();
+                //     $biens = $stmt->fetchAll();
+                    
+                    
+                //     var_dump($biens);
                     ?>
             </div>
     </main>    

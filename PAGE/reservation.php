@@ -16,7 +16,13 @@ session_start();
 $username = $_SESSION['username'];
 $nom = $_POST['service'];
 
-$sql = "INSERT INTO SERVICES (email, nom, cout) VALUES ('$username', '$nom', 10)";
+if($nom == "maintenance/réparation"){
+    $cout = 0;
+}else if($nom == "tarification dynamique"){
+    $cout = 40;
+}
+
+$sql = "INSERT INTO SERVICES (email, nom, cout) VALUES ('$username', '$nom', $cout)";
 
 if ($conn->query($sql) === TRUE) {
     echo "Service ajouté avec succès !";

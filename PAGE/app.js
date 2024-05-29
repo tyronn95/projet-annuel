@@ -10,18 +10,17 @@ document.getElementById('numberForm').addEventListener('submit', function(event)
         resultat = 50;
     }
 
+
+    console.log(resultat)
     fetch('save_number.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ resultat: resultat })
+        body: JSON.stringify({ resultat: resultat})
     })
     .then(response => response.json())
     .then(data => {
         console.log('Success:', data);
     })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
 });

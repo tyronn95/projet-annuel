@@ -310,6 +310,8 @@ text-decoration: underline;
   width: 40%;
   padding-left: 6%;
   margin-top: 4%;
+  max-height: 650px;
+  overflow-y: auto;
 }
 
 

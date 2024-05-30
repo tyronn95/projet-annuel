@@ -23,7 +23,7 @@ include '../GLOBAL/includes/session_verif.php';
                     <a class="nav-link active" aria-current="page" href="voyageur.php">Réserver</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../PAGE/services.php">Services</a>
+                    <a class="nav-link" href="services.php">Services</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="my_reservation.php">Mes Réservations</a>

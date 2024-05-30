@@ -30,16 +30,16 @@ include '../GLOBAL/includes/session_verif.php';
               <ul class="navbar-nav">
                 <li class="nav-item">
                     
-                  <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
+                  <a class="nav-link active" aria-current="page" href="calendar_presta.php">Calendrier</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="services.php">Services</a>
+                  <a class="nav-link" href="mes_document.php">Documents</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" aria-current="page" href="a_propos.php">À propos</a>
+                  <a class="nav-link" aria-current="page" href="suivi_evaluation.php">Evaluation</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="abonnements.php">Abonnements</a>
+                  <a class="nav-link" href="fiche_intervention.php">Intervention</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="contact.php">Contact</a>

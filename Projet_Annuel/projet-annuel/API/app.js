@@ -831,6 +831,201 @@ app.post('/subscription', (req, res) => {
 });
 
 
+// --------------------------------Propriétés-----------------------------------
+
+// Récupérer les propriétés d'un propriétaire
+app.get('/api/proprietes/:proprietaire_id', (req, res) => {
+    const { proprietaire_id } = req.params;
+
+    if (!proprietaire_id || isNaN(proprietaire_id)) {
+        console.error('ID propriétaire invalide');
+        return res.status(400).json({ message: 'ID propriétaire invalide' });
+    }
+
+    const query = 'SELECT * FROM proprietes WHERE proprietaire_id = ?';
+    pool.query(query, [proprietaire_id], (err, results) => {
+        if (err) {
+            console.error('Erreur lors de la récupération des propriétés:', err);
+            return res.status(500).json({ message: 'Erreur lors de la récupération des propriétés' });
+        }
+        console.log('Propriétés récupérées:', results); // Log des résultats pour déboguer
+        res.json(results);
+    });
+});
+
+// Récupérer les détails d'une propriété
+app.get('/api/proprietes/details/:propriete_id', (req, res) => {
+    const { propriete_id } = req.params;
+
+    if (!propriete_id || isNaN(propriete_id)) {
+        console.error('ID propriété invalide');
+        return res.status(400).json({ message: 'ID propriété invalide' });
+    }
+
+    const query = 'SELECT * FROM proprietes WHERE propriete_id = ?';
+    pool.query(query, [propriete_id], (err, results) => {
+        if (err) {
+            console.error('Erreur lors de la récupération des détails de la propriété:', err);
+            return res.status(500).json({ message: 'Erreur lors de la récupération des détails de la propriété' });
+        }
+        if (results.length === 0) {
+            console.error('Propriété non trouvée');
+            return res.status(404).json({ message: 'Propriété non trouvée' });
+        }
+        console.log('Détails de la propriété récupérés:', results[0]); // Log des résultats pour déboguer
+        res.json(results[0]);
+    });
+});
+
+// Ajouter une nouvelle propriété
+app.post('/api/proprietes', (req, res) => {
+    const {
+        type_propriete,
+        titre,
+        adresse,
+        ville,
+        code_postal,
+        pays,
+        phrase_accroche,
+        description,
+        nombre_chambres,
+        nombre_salles_de_bain,
+        superficie,
+        capacite,
+        date_disponibilite,
+        date_visite,
+        photos,
+        proprietaire_id
+    } = req.body;
+
+    if (!proprietaire_id || isNaN(proprietaire_id)) {
+        console.error('ID propriétaire invalide');
+        return res.status(400).json({ message: 'ID propriétaire invalide' });
+    }
+
+    const query = `
+        INSERT INTO proprietes (
+            type_propriete, titre, adresse, ville, code_postal, pays,
+            phrase_accroche, description, nombre_chambres, nombre_salles_de_bain,
+            superficie, capacite, date_disponibilite, date_visite, photos, proprietaire_id
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+    const values = [
+        type_propriete, titre, adresse, ville, code_postal, pays,
+        phrase_accroche, description, nombre_chambres, nombre_salles_de_bain,
+        superficie, capacite, date_disponibilite, date_visite, photos, proprietaire_id
+    ];
+
+    pool.query(query, values, (err, results) => {
+        if (err) {
+            console.error('Erreur lors de l\'ajout de la propriété:', err);
+            return res.status(500).json({ message: 'Erreur lors de l\'ajout de la propriété' });
+        }
+        console.log('Propriété ajoutée:', results);
+        res.status(201).json({ message: 'Propriété ajoutée avec succès!', propriete_id: results.insertId });
+    });
+});
+
+// Mettre à jour une propriété existante
+app.put('/api/proprietes/:propriete_id', (req, res) => {
+    const { propriete_id } = req.params;
+    const {
+        type_propriete,
+        titre,
+        adresse,
+        ville,
+        code_postal,
+        pays,
+        phrase_accroche,
+        description,
+        nombre_chambres,
+        nombre_salles_de_bain,
+        superficie,
+        capacite,
+        date_disponibilite,
+        date_visite,
+        photos
+    } = req.body;
+
+    if (!propriete_id || isNaN(propriete_id)) {
+        console.error('ID propriété invalide');
+        return res.status(400).json({ message: 'ID propriété invalide' });
+    }
+
+    const query = `
+        UPDATE proprietes SET
+            type_propriete = ?, titre = ?, adresse = ?, ville = ?, code_postal = ?, pays = ?,
+            phrase_accroche = ?, description = ?, nombre_chambres = ?, nombre_salles_de_bain = ?,
+            superficie = ?, capacite = ?, date_disponibilite = ?, date_visite = ?, photos = ?
+        WHERE propriete_id = ?
+    `;
+    const values = [
+        type_propriete, titre, adresse, ville, code_postal, pays,
+        phrase_accroche, description, nombre_chambres, nombre_salles_de_bain,
+        superficie, capacite, date_disponibilite, date_visite, photos, propriete_id
+    ];
+
+    pool.query(query, values, (err, results) => {
+        if (err) {
+            console.error('Erreur lors de la mise à jour de la propriété:', err);
+            return res.status(500).json({ message: 'Erreur lors de la mise à jour de la propriété' });
+        }
+        if (results.affectedRows === 0) {
+            console.error('Propriété non trouvée');
+            return res.status(404).json({ message: 'Propriété non trouvée' });
+        }
+        console.log('Propriété mise à jour:', results);
+        res.json({ message: 'Propriété mise à jour avec succès!' });
+    });
+});
+
+// Supprimer une propriété
+app.delete('/api/proprietes/:propriete_id', (req, res) => {
+    const { propriete_id } = req.params;
+
+    if (!propriete_id || isNaN(propriete_id)) {
+        console.error('ID propriété invalide');
+        return res.status(400).json({ message: 'ID propriété invalide' });
+    }
+
+    const query = 'DELETE FROM proprietes WHERE propriete_id = ?';
+    pool.query(query, [propriete_id], (err, results) => {
+        if (err) {
+            console.error('Erreur lors de la suppression de la propriété:', err);
+            return res.status(500).json({ message: 'Erreur lors de la suppression de la propriété' });
+        }
+        console.log('Propriété supprimée:', results);
+        res.json({ message: 'Propriété supprimée avec succès!' });
+    });
+});
+
+app.post('/api/proprietes/:id/validate', (req, res) => {
+    const proprieteId = req.params.id;
+    const query = 'UPDATE proprietes SET statut = "valide" WHERE propriete_id = ?';
+    
+    pool.query(query, [proprieteId], (err, result) => {
+        if (err) {
+            console.error('Erreur lors de la validation de la propriété:', err);
+            return res.status(500).json({ error: "Erreur lors de la validation de la propriété" });
+        }
+        res.json({ message: "Propriété validée avec succès" });
+    });
+});
+
+app.post('/api/proprietes/:id/reject', (req, res) => {
+    const proprieteId = req.params.id;
+    const query = 'UPDATE proprietes SET statut = "rejete" WHERE propriete_id = ?';
+    
+    pool.query(query, [proprieteId], (err, result) => {
+        if (err) {
+            console.error('Erreur lors du rejet de la propriété:', err);
+            return res.status(500).json({ error: "Erreur lors du rejet de la propriété" });
+        }
+        res.json({ message: "Propriété rejetée avec succès" });
+    });
+});
+
+
 
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

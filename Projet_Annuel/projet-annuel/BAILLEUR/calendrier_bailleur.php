@@ -27,7 +27,7 @@ include '../GLOBAL/includes/session_verif.php';
           <a class="nav-link active" aria-current="page" href="calendrier_bailleur.php">Calendrier</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Gestion des Biens</a>
+          <a class="nav-link active" aria-current="page" href="gestion_biens.php">Gestion des Biens</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="form_bien.php">Ajout de propriété</a>
